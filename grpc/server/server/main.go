@@ -5,7 +5,7 @@ import (
 	"log"
 	"net"
 	"google.golang.org/grpc"
-	chat "github.com/Iffigues/mywebsite/grpc/protozoaire/linuxCommand"
+	chat "github.com/Iffigues/website/grpc/protozoaire/linuxCommand"
 	//"github.com/Iffigues/mywebsite/grpc/server/server/lw"
 )
 

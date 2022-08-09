@@ -4,7 +4,7 @@ import (
 	"log"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
-	chat "github.com/Iffigues/mywebsite/grpc/protozoaire/linuxCommand"
+	chat "github.com/Iffigues/website/grpc/protozoaire/linuxCommand"
 )
 
 func test(a rig) (response *chat.RigResponses, err error) {
