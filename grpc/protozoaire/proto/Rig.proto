@@ -1,0 +1,17 @@
+syntax = "proto3";
+package linuxCommand;
+option go_package = ".;linuxCommand";
+
+message RigResponses {
+	repeated string response = 1;
+}
+
+message Rig {
+  string Nbr = 1;
+  bool 	Man = 2;
+  bool Woman = 3;
+}
+
+service RigService {
+  rpc GetRig(Rig) returns (RigResponses) {}
+}

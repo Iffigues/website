@@ -1,0 +1,14 @@
+version: "3"
+services:
+  goclient:
+    build: ./goclient
+    ports:
+      - "8080:8080"
+  server:
+    build: ./server
+    ports:
+      - "9000:9000"
+  gateway:
+    build: ./gateway
+    ports:
+      - "9090:9090"
