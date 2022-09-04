@@ -22,7 +22,7 @@ function Rig() {
 		api.Post("/rig", {
 			man: checkedMan,
 			woman: checkedWoman,
-			nbr: nbrRig
+			nbr: nbrRig.toString()
 		}).then((resp: any) => {
     			console.log(resp.data);
 		});		

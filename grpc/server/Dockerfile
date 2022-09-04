@@ -18,4 +18,7 @@ RUN go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 RUN go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 ADD ./server /server
 workdir /server
-CMD ["go", "run", "."]
+RUN go mod init server
+RUN go get
+RUN go build
+CMD ["./server"]

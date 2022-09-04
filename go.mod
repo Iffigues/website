@@ -5,6 +5,7 @@ go 1.18
 require (
 	github.com/Iffigues/mywebsite v0.0.0-20220808132333-95cd1d674127
 	github.com/golang/protobuf v1.5.2
+	github.com/gorilla/handlers v1.5.1
 	github.com/gorilla/mux v1.8.0
 	github.com/gorilla/sessions v1.2.1
 	github.com/lib/pq v1.10.6
@@ -14,6 +15,7 @@ require (
 )
 
 require (
+	github.com/felixge/httpsnoop v1.0.1 // indirect
 	github.com/golang/snappy v0.0.1 // indirect
 	github.com/gorilla/securecookie v1.1.1 // indirect
 	github.com/klauspost/compress v1.15.9 // indirect

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
@@ -16,6 +17,7 @@ func test(a rig) (response *chat.RigResponses, err error) {
 	defer conn.Close()
 	c := chat.NewRigServiceClient(conn)
 	response, err = c.GetRig(context.Background(), &chat.Rig{Nbr: a.Nbr, Man: a.Man, Woman: a.Woman})
+	fmt.Println("res-",response)
 	if err != nil {
 		log.Fatalf("Error when calling SayHello: %s", err)
 	}

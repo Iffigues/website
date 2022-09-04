@@ -33,7 +33,7 @@ func main() {
 func handleRig(w http.ResponseWriter, r *http.Request) {
 	rigs := rig{}
 	parseJsonBodyREquest(r, &rigs)
-	res, _ :=  test(rigs)
-	fmt.Println(res)
+	res, za :=  test(rigs)
+	fmt.Println("dsds", res, za)
 	json.NewEncoder(w).Encode(res)
 }
