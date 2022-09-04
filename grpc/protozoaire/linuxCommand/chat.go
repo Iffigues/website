@@ -32,5 +32,6 @@ func (s *Server) GetRig(ctx context.Context, in *Rig) (*RigResponses, error) {
 	if erro != nil {
 		return nil, erro
 	}
+	e.response = res.String()
 	return e, nil
 }
