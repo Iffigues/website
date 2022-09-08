@@ -27,6 +27,7 @@ func (s *Server) GetRig(ctx context.Context, in *Rig) (*Responses, error) {
 	if in.Nbr != "" {
 		addOptTab(t, "-c", in.Nbr)
 	}
+	print(in.Nbr)
 	stdout, stderr, erro := Exec("rig", t)
 	if erro != nil {
 		return nil, erro

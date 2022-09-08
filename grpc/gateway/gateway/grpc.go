@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
@@ -8,6 +9,7 @@ import (
 )
 
 func rigGrpc(a rig) (response *chat.Responses, err error) {
+	fmt.Println(a)
 	var conn *grpc.ClientConn
 	conn, errs := grpc.Dial("gopiko.fr:9000", grpc.WithInsecure())
 	if errs != nil {
@@ -19,5 +21,6 @@ func rigGrpc(a rig) (response *chat.Responses, err error) {
 	if err != nil {
 		log.Fatalf("Error when calling SayHello: %s", err)
 	}
+	fmt.Println(response)
 	return 
 }
