@@ -1,12 +1,7 @@
 syntax = "proto3";
 package linuxCommand;
+import "proto/Response.proto";
 option go_package = ".;linuxCommand";
-
-message Responses {
-	string stdoutResponse = 1;
-	string  stderrResponse  = 2;
-	
-}
 
 message Rig {
   string Nbr = 1;

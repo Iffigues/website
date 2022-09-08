@@ -1,0 +1,8 @@
+syntax = "proto3";
+package linuxCommand;
+option go_package = ".;linuxCommand";
+
+message Responses {
+        string stdoutResponse = 1;
+        string  stderrResponse  = 2;
+}
