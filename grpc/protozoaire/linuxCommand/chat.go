@@ -15,8 +15,8 @@ type Server struct {
 	UnimplementedRigServiceServer
 }
 
-func (s *Server) GetRig(ctx context.Context, in *Rig) (*RigResponses, error) {
-	e := new(RigResponses)
+func (s *Server) GetRig(ctx context.Context, in *Rig) (*Responses, error) {
+	e := new(Responses)
 	var t []string
 	if in.Man {
 		t = append(t, "-m")
@@ -27,11 +27,10 @@ func (s *Server) GetRig(ctx context.Context, in *Rig) (*RigResponses, error) {
 	if in.Nbr != "" {
 		addOptTab(t, "-c", in.Nbr)
 	}
-	res, _,erro := Exec("rig", t)
-	println("hello", res.String())
+	stdout, stderr, erro := Exec("rig", t)
 	if erro != nil {
 		return nil, erro
 	}
-	e.Response =[]string{res.String()}
+	e.StdoutResponse, e.StderrResponse = stdout.String(), stderr.String()
 	return e, nil
 }

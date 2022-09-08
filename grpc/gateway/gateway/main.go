@@ -20,7 +20,7 @@ func main() {
     fmt.Println("Start")
     router := mux.NewRouter()
 	router.HandleFunc("/rig", handleRig).Methods("POST")
-	
+
 	fmt.Println("Listen and Server")
 	corsObj:=handlers.AllowedOrigins([]string{"*"})
 	headersOk := handlers.AllowedHeaders([]string{"X-Requested-With"})
@@ -33,7 +33,6 @@ func main() {
 func handleRig(w http.ResponseWriter, r *http.Request) {
 	rigs := rig{}
 	parseJsonBodyREquest(r, &rigs)
-	res, za :=  test(rigs)
-	fmt.Println("dsds", res, za)
+	res, _ :=  rigGrpc(rigs)
 	json.NewEncoder(w).Encode(res)
 }

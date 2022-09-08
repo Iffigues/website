@@ -22,7 +22,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type RigServiceClient interface {
-	GetRig(ctx context.Context, in *Rig, opts ...grpc.CallOption) (*RigResponses, error)
+	GetRig(ctx context.Context, in *Rig, opts ...grpc.CallOption) (*Responses, error)
 }
 
 type rigServiceClient struct {
@@ -33,8 +33,8 @@ func NewRigServiceClient(cc grpc.ClientConnInterface) RigServiceClient {
 	return &rigServiceClient{cc}
 }
 
-func (c *rigServiceClient) GetRig(ctx context.Context, in *Rig, opts ...grpc.CallOption) (*RigResponses, error) {
-	out := new(RigResponses)
+func (c *rigServiceClient) GetRig(ctx context.Context, in *Rig, opts ...grpc.CallOption) (*Responses, error) {
+	out := new(Responses)
 	err := c.cc.Invoke(ctx, "/linuxCommand.RigService/GetRig", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -46,7 +46,7 @@ func (c *rigServiceClient) GetRig(ctx context.Context, in *Rig, opts ...grpc.Cal
 // All implementations must embed UnimplementedRigServiceServer
 // for forward compatibility
 type RigServiceServer interface {
-	GetRig(context.Context, *Rig) (*RigResponses, error)
+	GetRig(context.Context, *Rig) (*Responses, error)
 	mustEmbedUnimplementedRigServiceServer()
 }
 
@@ -54,7 +54,7 @@ type RigServiceServer interface {
 type UnimplementedRigServiceServer struct {
 }
 
-func (UnimplementedRigServiceServer) GetRig(context.Context, *Rig) (*RigResponses, error) {
+func (UnimplementedRigServiceServer) GetRig(context.Context, *Rig) (*Responses, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRig not implemented")
 }
 func (UnimplementedRigServiceServer) mustEmbedUnimplementedRigServiceServer() {}

@@ -2,8 +2,10 @@ syntax = "proto3";
 package linuxCommand;
 option go_package = ".;linuxCommand";
 
-message RigResponses {
-	repeated string response = 1;
+message Responses {
+	string stdoutResponse = 1;
+	string  stderrResponse  = 2;
+	
 }
 
 message Rig {
@@ -13,5 +15,5 @@ message Rig {
 }
 
 service RigService {
-  rpc GetRig(Rig) returns (RigResponses) {}
+  rpc GetRig(Rig) returns (Responses) {}
 }
