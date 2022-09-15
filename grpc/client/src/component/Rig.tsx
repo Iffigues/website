@@ -35,7 +35,7 @@ return (
 			onChange={(e)=>{setCheckedMan(e.target.checked)}}
         		checked={checkedMan}
 			type="switch"
-        		id="custom-switch"
+        		id="man"
         		label="man"
      		 />
 		<Form.Check 
@@ -43,9 +43,9 @@ return (
         		checked={checkedWoman}
 			type="switch"
         		label="woman"
-        		id="disabled-custom-switch"
+        		id="woman"
       		/>
-		<NumericInput className="form-control" id="ze" min={1} value={nbrRig} onChange={(e)=>{if (e && e >= 1) setNbrRig(e);}} />
+		<NumericInput className="form-control" id="c-input" min={1} value={nbrRig} onChange={(e)=>{if (e && e >= 1) setNbrRig(e);}} />
 		<button onClick={getRig}>Get Rig</button>;
 		</div>
 		<div></div>

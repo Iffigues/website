@@ -8,7 +8,6 @@ class Request {
   	}
 
 	Post(endpoint: string, data: any) {
-		console.log(JSON.stringify(data)) 
 		const headers = {
        			 'Content-Type': 'application/json'
    		 };

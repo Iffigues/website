@@ -2,12 +2,14 @@ package linuxCommand
 
 
 import (
+	"fmt"
 	"bytes"
 	"os/exec"
 	"time"
 )
 
 func Exec(Command string, opt []string) (out, er bytes.Buffer, err error) {
+	fmt.Println(opt)
 	cmd := exec.Command(Command, opt...)
 	cmd.Stdout = &out
 	cmd.Stderr  = &er
@@ -28,5 +30,6 @@ func Exec(Command string, opt []string) (out, er bytes.Buffer, err error) {
 		if err != nil {
 		}
 	}
+	fmt.Println(out.String(), er.String());
 	return
 }

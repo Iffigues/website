@@ -5,10 +5,11 @@ import (
 )
 
 
-func addOptTab(r []string, e ...string) {
+func addOptTab(r []string, e ...string) (b []string) {
 	for _, val := range e {
 		r = append(r, val);
 	}
+	return r
 }
 
 type Server struct {
@@ -18,6 +19,7 @@ type Server struct {
 func (s *Server) GetRig(ctx context.Context, in *Rig) (*Responses, error) {
 	e := new(Responses)
 	var t []string
+
 	if in.Man {
 		t = append(t, "-m")
 	}
@@ -25,9 +27,8 @@ func (s *Server) GetRig(ctx context.Context, in *Rig) (*Responses, error) {
 		t = append(t, "-f")
 	}
 	if in.Nbr != "" {
-		addOptTab(t, "-c", in.Nbr)
+		t = addOptTab(t, "-c", in.Nbr)
 	}
-	print(in.Nbr)
 	stdout, stderr, erro := Exec("rig", t)
 	if erro != nil {
 		return nil, erro
