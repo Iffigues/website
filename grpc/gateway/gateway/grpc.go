@@ -14,6 +14,5 @@ func rigGrpc(a rig) (response *chat.Responses, err error) {
 	}
 	defer conn.Close()
 	c := chat.NewRigServiceClient(conn)
-	print("nbr", a.Nbr)
 	return c.GetRig(context.Background(), &chat.Rig{Nbr: a.Nbr, Man: a.Man, Woman: a.Woman})
 }
