@@ -70,7 +70,7 @@ func (g *Server) Servers(conf config.Config) (srv *http.Server) {
 		g.Router.Handle(h.Route, g.Middleware(h.Handle, h)).Methods(h.Method...)
 	}
 	return &http.Server{
-		Addr:    ":80",
+		Addr:    ":8081",
 		Handler: g.Router,
 	}
 }

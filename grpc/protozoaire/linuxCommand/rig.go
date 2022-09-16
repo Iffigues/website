@@ -1,16 +1,67 @@
 package linuxCommand
 
-func GeRigOpt() (r map[string]int) {
-	return map[string]int{
-		"c": 1,
-		"m": 0,
-		"f": 0,
+import (
+	"golang.org/x/net/context"
+)
+
+func (s *Server) GetRig(ctx context.Context, in *Rig) (*Responses, error) {
+	e := new(Responses)
+	var t []string
+
+	if in.Man {
+		t = append(t, "-m")
 	}
+	if in.Woman {
+		t = append(t, "-f")
+	}
+	if in.Nbr != "" {
+		t = addOptTab(t, "-c", in.Nbr)
+	}
+	stdout, stderr, erro := Exec("rig", t)
+	if erro != nil {
+		return nil, erro
+	}
+	e.StdoutResponse, e.StderrResponse = stdout.String(), stderr.String()
+	return
 }
 
-func GetCowThink() (r map[string]int) {
+func (s *Server) GetFortune(ctx context.Context, in *Fortune)(*Response, error) {
+	e := new(Responses)
+	var t []string
 
-	return map[string]int{
-
+	if in.A {
+		t = append(t, "-a")
 	}
+	if in.C {
+		t = append(t, "-c")
+	}
+	if in.E {
+		t = append(t, "-e")
+	}
+	if in.F {
+		t = append(t, "-f")
+	}
+	if in.L {
+		t = append(t, "-l")
+	}
+	if in.O {
+		t = append(t, "-o")
+	}
+	if in.S {
+		t = append(t, "-s")
+	}
+	if in.I {
+		t = append(t, "-i")
+	}
+	if in.U {
+		t = append(t, "-u")
+	}
+	if in.M != "" {
+	}
+	if in.N != "" {
+	}
+	for _, val := range in.Percent {
+		
+	}
+	return
 }

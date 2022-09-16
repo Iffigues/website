@@ -1,17 +1,18 @@
-module github.com/Iffigues/website
+module website
 
 go 1.18
 
 require (
 	github.com/Iffigues/mywebsite v0.0.0-20220808132333-95cd1d674127
+	github.com/Iffigues/website v0.0.0-20220915223726-07b80dc97e81
 	github.com/golang/protobuf v1.5.2
 	github.com/gorilla/handlers v1.5.1
 	github.com/gorilla/mux v1.8.0
 	github.com/gorilla/sessions v1.2.1
-	github.com/lib/pq v1.10.6
-	go.mongodb.org/mongo-driver v1.10.1
-	golang.org/x/net v0.0.0-20220809012201-f428fae20770
-	google.golang.org/grpc v1.48.0
+	github.com/lib/pq v1.10.7
+	go.mongodb.org/mongo-driver v1.10.2
+	golang.org/x/net v0.0.0-20220909164309-bea034e7d591
+	google.golang.org/grpc v1.49.0
 )
 
 require (
