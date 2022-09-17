@@ -36,11 +36,13 @@ func (s *Server) GetFortune(ctx context.Context, in *Fortune)(*Response, error) 
 		t = append(t, "-u")
 	}
 	if in.M != "" {
+		t = addOptTab(t, "-m", in.M)
 	}
 	if in.N != "" {
+		t = addOptTab(t, "-n", in.N)
 	}
 	for _, val := range in.Percent {
-		
+		t = addOptTab(t, val.Percent, val.Fortune)
 	}
 	return
 }
