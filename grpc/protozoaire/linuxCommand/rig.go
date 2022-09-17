@@ -22,5 +22,5 @@ func (s *Server) GetRig(ctx context.Context, in *Rig) (*Responses, error) {
 		return nil, erro
 	}
 	e.StdoutResponse, e.StderrResponse = stdout.String(), stderr.String()
-	return
+	return e, nil
 }
