@@ -17,6 +17,7 @@ func jsonHeader(next http.Handler) http.Handler {
 func main() {
     router := mux.NewRouter()
 	router.HandleFunc("/rig", handleRig).Methods("POST")
+	router.HandleFunc("/fortune", handleFortune).Methods("POST")
 	corsObj:=handlers.AllowedOrigins([]string{"*"})
 	headersOk := handlers.AllowedHeaders([]string{"X-Requested-With"})
 	methodsOk := handlers.AllowedMethods([]string{"GET", "HEAD", "POST", "PUT", "OPTIONS"})

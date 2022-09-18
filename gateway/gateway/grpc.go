@@ -3,7 +3,7 @@ package main
 import (
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
-	chat "github.com/Iffigues/website/grpc/protozoaire/linuxCommand"
+	chat "github.com/Iffigues/website/proto/linuxCommand"
 )
 
 func rigGrpc(a rig) (response *chat.Responses, err error) {
@@ -27,5 +27,6 @@ func fortuneGrpc(a fortune) (response *chat.Responses, err error) {
 	}
 	defer conn.Close()
 	c := chat.NewFortuneServiceClient(conn)
+	print("eee")
 	return c.GetFortune(context.Background(), &e)
 }
