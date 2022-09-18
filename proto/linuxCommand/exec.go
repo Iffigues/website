@@ -8,7 +8,6 @@ import (
 )
 
 func Exec(Command string, opt []string) (out, er bytes.Buffer, err error) {
-	fmt.Println(opt)
 	cmd := exec.Command(Command, opt...)
 	cmd.Stdout = &out
 	cmd.Stderr  = &er
