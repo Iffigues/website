@@ -9,7 +9,7 @@ func addOptTab(r []string, e ...string) (b []string) {
 
 func startExec(a string, t []string) (e *Responses, err error) {
 	e = new(Responses)
-	stdout, stderr, erro := Exec("a", t)
+	stdout, stderr, erro := Exec(a, t)
 	if erro != nil {
 		return nil, erro
 	}
