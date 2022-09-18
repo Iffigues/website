@@ -31,8 +31,7 @@ func fortuneGrpc(a fortune) (response *chat.Responses, err error) {
 	return c.GetFortune(context.Background(), &e)
 }
 
-func fortuneGrpc(a fortune) (response *chat.Responses, err error) {
-	e := chat.Fortune{}
+func fortuneFileGrpc() (response *chat.Responses, err error) {
 	var conn *grpc.ClientConn
 	conn, errs := grpc.Dial("gopiko.fr:9000", grpc.WithInsecure())
 	if errs != nil {
@@ -40,6 +39,5 @@ func fortuneGrpc(a fortune) (response *chat.Responses, err error) {
 	}
 	defer conn.Close()
 	c := chat.NewFortuneServiceClient(conn)
-	e.M = a.M
-	return c.GetFortune(context.Background(), &e)
+	return c.GetFortuneFile(context.Background(), nil)
 }

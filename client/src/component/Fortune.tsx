@@ -13,7 +13,6 @@ interface Percent {
 
 function Fortune() {
 	let y = 1;
-	//let percent:Percent;
 	const [fortune, setFortune] = useState("");
 	const [checkedA, setCheckedA] = useState(false);
 	const [checkedC, setCheckedC] = useState(false);
@@ -32,8 +31,15 @@ function Fortune() {
 	useEffect(() => {
 		if (y)
   			getFortune();
+			getFileFortune();
 		y = 0;
 	}, []);
+
+	function getFileFortune() {
+		api.Post("/filefortune", {}).then((resp: any) => {
+			console.log(resp.data)
+		})
+	}
 
 	function getFortune () {
 		api.Post("/fortune", {
