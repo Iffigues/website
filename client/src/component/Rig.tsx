@@ -55,7 +55,6 @@ function Rig() {
 			woman: checkedWoman,
 			nbr: nbrRig.toString()
 		}).then((resp: any) => {
-			console.log(resp.data)
     			setData(resp.data)
 		});		
 	};

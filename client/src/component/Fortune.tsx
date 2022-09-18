@@ -30,6 +30,7 @@ function Fortune() {
 	function getFortune () {
 		api.Post("/fortune", {
 		}).then((resp: any) => {
+			console.log(resp.data)
 		});		
 	};
 

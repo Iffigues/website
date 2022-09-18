@@ -4,7 +4,7 @@ import (
 	"log"
 	"net"
 	"google.golang.org/grpc"
-	chat "github.com/Iffigues/website/grpc/protozoaire/linuxCommand"
+	chat "github.com/Iffigues/website/proto/linuxCommand"
 )
 
 func main() {
