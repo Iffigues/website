@@ -4,7 +4,7 @@ import (
 	"golang.org/x/net/context"
 )
 
-func (s *Server) GetFortuneFile(ctx context.Context, in *FileFortune)(*Responses, error) {
+func (s *Server) GetFortuneFile(ctx context.Context)(*Responses, error) {
 	return startExec("fortune",[]string{"-f"})
 }
 

@@ -8,6 +8,7 @@ package linuxCommand
 
 import (
 	context "context"
+	empty "github.com/golang/protobuf/ptypes/empty"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -23,7 +24,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type FortuneServiceClient interface {
 	GetFortune(ctx context.Context, in *Fortune, opts ...grpc.CallOption) (*Responses, error)
-	GetFortuneFile(ctx context.Context, in *FileFortune, opts ...grpc.CallOption) (*Responses, error)
+	GetFortuneFile(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*Responses, error)
 }
 
 type fortuneServiceClient struct {
@@ -43,7 +44,7 @@ func (c *fortuneServiceClient) GetFortune(ctx context.Context, in *Fortune, opts
 	return out, nil
 }
 
-func (c *fortuneServiceClient) GetFortuneFile(ctx context.Context, in *FileFortune, opts ...grpc.CallOption) (*Responses, error) {
+func (c *fortuneServiceClient) GetFortuneFile(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*Responses, error) {
 	out := new(Responses)
 	err := c.cc.Invoke(ctx, "/linuxCommand.FortuneService/GetFortuneFile", in, out, opts...)
 	if err != nil {
@@ -57,7 +58,7 @@ func (c *fortuneServiceClient) GetFortuneFile(ctx context.Context, in *FileFortu
 // for forward compatibility
 type FortuneServiceServer interface {
 	GetFortune(context.Context, *Fortune) (*Responses, error)
-	GetFortuneFile(context.Context, *FileFortune) (*Responses, error)
+	GetFortuneFile(context.Context, *empty.Empty) (*Responses, error)
 	mustEmbedUnimplementedFortuneServiceServer()
 }
 
@@ -68,7 +69,7 @@ type UnimplementedFortuneServiceServer struct {
 func (UnimplementedFortuneServiceServer) GetFortune(context.Context, *Fortune) (*Responses, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetFortune not implemented")
 }
-func (UnimplementedFortuneServiceServer) GetFortuneFile(context.Context, *FileFortune) (*Responses, error) {
+func (UnimplementedFortuneServiceServer) GetFortuneFile(context.Context, *empty.Empty) (*Responses, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetFortuneFile not implemented")
 }
 func (UnimplementedFortuneServiceServer) mustEmbedUnimplementedFortuneServiceServer() {}
@@ -103,7 +104,7 @@ func _FortuneService_GetFortune_Handler(srv interface{}, ctx context.Context, de
 }
 
 func _FortuneService_GetFortuneFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FileFortune)
+	in := new(empty.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -115,7 +116,7 @@ func _FortuneService_GetFortuneFile_Handler(srv interface{}, ctx context.Context
 		FullMethod: "/linuxCommand.FortuneService/GetFortuneFile",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FortuneServiceServer).GetFortuneFile(ctx, req.(*FileFortune))
+		return srv.(FortuneServiceServer).GetFortuneFile(ctx, req.(*empty.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
