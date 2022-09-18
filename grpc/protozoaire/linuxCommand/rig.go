@@ -5,7 +5,6 @@ import (
 )
 
 func (s *Server) GetRig(ctx context.Context, in *Rig) (*Responses, error) {
-	e := new(Responses)
 	var t []string
 
 	if in.Man {
@@ -17,10 +16,5 @@ func (s *Server) GetRig(ctx context.Context, in *Rig) (*Responses, error) {
 	if in.Nbr != "" {
 		t = addOptTab(t, "-c", in.Nbr)
 	}
-	stdout, stderr, erro := Exec("rig", t)
-	if erro != nil {
-		return nil, erro
-	}
-	e.StdoutResponse, e.StderrResponse = stdout.String(), stderr.String()
-	return e, nil
+	return startExec("rig", t)
 }

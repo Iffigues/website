@@ -5,7 +5,6 @@ import (
 )
 
 func (s *Server) GetFortune(ctx context.Context, in *Fortune)(*Responses, error) {
-	e := new(Responses)
 	var t []string
 
 	if in.A {
@@ -44,10 +43,5 @@ func (s *Server) GetFortune(ctx context.Context, in *Fortune)(*Responses, error)
 	for _, val := range in.Percent {
 		t = addOptTab(t, val.Percent, val.Fortune)
 	}
-	stdout, stderr, erro := Exec("fortune", t)
-	if erro != nil {
-		return nil, erro
-	}
-	e.StdoutResponse, e.StderrResponse = stdout.String(), stderr.String()
-	return e, nil
+	return startExec("fortune", t)
 }

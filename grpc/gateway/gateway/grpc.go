@@ -26,6 +26,6 @@ func fortuneGrpc(a fortune) (response *chat.Responses, err error) {
 		return nil, errs
 	}
 	defer conn.Close()
-	c := chat.NewRigServiceClient(conn)
+	c := chat.NewFortuneServiceClient(conn)
 	return c.GetFortune(context.Background(), &e)
 }
