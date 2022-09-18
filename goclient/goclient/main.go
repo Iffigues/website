@@ -1,7 +1,6 @@
 package main
 
 import (
-    "fmt"
     "github.com/gorilla/mux"
     "log"
     "net/http"
@@ -22,7 +21,6 @@ func main() {
         ReadTimeout:  15 * time.Second,
     }
 
-    fmt.Println("Server started on PORT 8080")
     log.Fatal(srv.ListenAndServe())
 
 }

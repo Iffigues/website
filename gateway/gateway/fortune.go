@@ -2,7 +2,6 @@ package main
 
 import (
     "net/http"
-    "fmt"
     "encoding/json"
 )
 
@@ -20,18 +19,10 @@ type fortune struct {
         Nbr   string `json:"nbr"`
 }
 
-type FortuneStructs struct {
-	Name string
-	Addr	string
-	Postal string
-	Tel string
-}
-
 func handleFortune(w http.ResponseWriter, r *http.Request) {
         fortunes := fortune{}
         parseJsonBodyREquest(r, &fortunes)
         res, err :=  fortuneGrpc(fortunes)
-	fmt.Println(res)
 	if err != nil {
 		json.NewEncoder(w).Encode(res)
 		return
