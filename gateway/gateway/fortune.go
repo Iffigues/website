@@ -38,10 +38,11 @@ func getFileFortuneArray(st string) (a []string){
 func handleFileFortune(w http.ResponseWriter, r *http.Request) {
 	res, err := fortuneFileGrpc()
 	if err != nil {
+		fmt.Println(err)
 		json.NewEncoder(w).Encode(res)
 		return
 	}
-	fmt.Println(res)
+	fmt.Println("res=",res)
 	tab := getFileFortuneArray(res.StdoutResponse)
 	json.NewEncoder(w).Encode(tab)
 }

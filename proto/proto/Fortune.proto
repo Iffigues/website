@@ -1,7 +1,6 @@
 syntax = "proto3";
 package linuxCommand;
 import "proto/Response.proto";
-import "google/protobuf/empty.proto";
 option go_package = ".;linuxCommand";
 
 message Percent {
@@ -24,8 +23,10 @@ message Fortune {
   repeated Percent Percent= 12;
 }
 
+message Empty{}
+
 service FortuneService {
   rpc GetFortune(Fortune) returns (Responses) {}
-  rpc GetFortuneFile(google.protobuf.Empty) returns (Responses) {}
+  rpc GetFortuneFile(Empty) returns (Responses) {}
 }
 

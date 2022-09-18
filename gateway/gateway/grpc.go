@@ -39,5 +39,5 @@ func fortuneFileGrpc() (response *chat.Responses, err error) {
 	}
 	defer conn.Close()
 	c := chat.NewFortuneServiceClient(conn)
-	return c.GetFortuneFile(context.Background(), nil)
+	return c.GetFortuneFile(context.Background(), &chat.Empty{})
 }
