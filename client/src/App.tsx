@@ -1,4 +1,4 @@
-import React, { useState, useRef, useLayoutEffect}  from 'react';
+import React, { useState, useRef, useLayoutEffect, useEffect}  from 'react';
 import logo from './logo.svg';
 import {
   BrowserRouter,
@@ -13,13 +13,25 @@ import './asset/App.css';
 import Rig from './component/Rig'
 import Navi from './component/Navi'
 import Fortune from './component/Fortune'
-
-const Hello = React.forwardRef((props, ref: React.Ref<HTMLDivElement>) => (
-	<>
-	</>
-));
+import Request from './component/Request'
 
 function App() {
+	
+	let y = 1;	
+	const [fortune, setFortune] = useState("");
+	const api = new Request("http://gopiko.fr/");
+	useEffect(() => {
+		if (y)
+  			getFortune();
+		y = 0;
+	}, []);
+
+	function getFortune () {
+		api.Post("/fortune", {
+		}).then((resp: any) => {
+			setFortune(resp.data.StdoutResponse)
+		});
+	};
 	return (
 	<div className="App">
 		<Navi />	

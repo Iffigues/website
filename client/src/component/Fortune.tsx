@@ -4,9 +4,17 @@ import Form from 'react-bootstrap/Form';
 import NumericInput from 'react-numeric-input';
 import Container from 'react-bootstrap/Container';
 import Request from './Request'
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
+interface Percent {
+   [key: string]: string;
+}
 
 function Fortune() {
 	let y = 1;
+	//let percent:Percent;
+	const [fortune, setFortune] = useState("");
 	const [checkedA, setCheckedA] = useState(false);
 	const [checkedC, setCheckedC] = useState(false);
 	const [checkedF, setCheckedF] = useState(false);
@@ -18,7 +26,7 @@ function Fortune() {
 	const [checkedU, setCheckedU] = useState(false);
 	const [checkedM, setCheckedM] = useState("");
 	const [checkedN, setCheckedN] = useState(1);
-	const [checkedPercent, setCheckedPercent] = useState({} as Record<string, string>);
+	const [checkedPercent, setCheckedPercent] = useState<Percent>({});
 	const api = new Request("http://gopiko.fr/");
 
 	useEffect(() => {
@@ -29,69 +37,114 @@ function Fortune() {
 
 	function getFortune () {
 		api.Post("/fortune", {
+			A: checkedA,
+			C: checkedC,
+			E: checkedE,
+			F: checkedF,
+			L: checkedL,
+			O: checkedO,
+			S: checkedS,
+			I: checkedI,
+			U: checkedU,
+			M: checkedM,
+			N: checkedN,
+			Percent: getPercent(),
+			
 		}).then((resp: any) => {
-			console.log(resp)
+			setFortune(resp.data.StdoutResponse)
 		});		
 	};
 
+	function getPercent() {
+		Object.keys(checkedPercent).map((item,index) => {
+			
+		})
+	}
+
 return (
 	<div>
-		<div>
+		<Container fluid><pre>{fortune}</pre></Container>
+		<Container fluid>
+<Row>
+<Col>
+			<p>A</p>
 			<Form.Check 
 				type={"checkbox"}
 				onChange={(e)=>{setCheckedA(e.target.checked)}}
         			checked={checkedA}
           		/>
+</Col>
+<Col>
+<p>C</p>
 <Form.Check
 				type={"checkbox"}
-				onChange={(e)=>{setCheckedA(e.target.checked)}}
-        			checked={checkedA}
-          		/>
+				onChange={(e)=>{setCheckedC(e.target.checked)}}
+        			checked={checkedC}
+          		/></Col>
+<Col>
+<p>E</p>
 <Form.Check
 				type={"checkbox"}
-				onChange={(e)=>{setCheckedA(e.target.checked)}}
-        			checked={checkedA}
-          		/>
+				onChange={(e)=>{setCheckedE(e.target.checked)}}
+        			checked={checkedE}
+          		/></Col>
+<Col>
+<p>F</p>
 <Form.Check
 				type={"checkbox"}
-				onChange={(e)=>{setCheckedA(e.target.checked)}}
-        			checked={checkedA}
-          		/>
+				onChange={(e)=>{setCheckedF(e.target.checked)}}
+        			checked={checkedF}
+          		/></Col>
+<Col>
+<p>L</p>
 <Form.Check
 				type={"checkbox"}
-				onChange={(e)=>{setCheckedA(e.target.checked)}}
-        			checked={checkedA}
-          		/>
+				onChange={(e)=>{setCheckedL(e.target.checked)}}
+        			checked={checkedL}
+          		/></Col>
+<Col>
+<p>O</p>
 <Form.Check
 				type={"checkbox"}
-				onChange={(e)=>{setCheckedA(e.target.checked)}}
-        			checked={checkedA}
-          		/>
+				onChange={(e)=>{setCheckedO(e.target.checked)}}
+        			checked={checkedO}
+          		/></Col>
+<Col>
+<p>S</p>
 <Form.Check
 				type={"checkbox"}
-				onChange={(e)=>{setCheckedA(e.target.checked)}}
-        			checked={checkedA}
-          		/>
+				onChange={(e)=>{setCheckedS(e.target.checked)}}
+        			checked={checkedS}
+          		/></Col>
+<Col>
+<p>I</p>
 <Form.Check
 				type={"checkbox"}
-				onChange={(e)=>{setCheckedA(e.target.checked)}}
-        			checked={checkedA}
-          		/>
+				onChange={(e)=>{setCheckedI(e.target.checked)}}
+        			checked={checkedI}
+          		/></Col>
+<Col>
+<p>U</p>
 <Form.Check
 				type={"checkbox"}
-				onChange={(e)=>{setCheckedA(e.target.checked)}}
-        			checked={checkedA}
-          		/>
-
-<Form.Control type="texte" placeholder="Enter email" />
+				onChange={(e)=>{setCheckedU(e.target.checked)}}
+        			checked={checkedU}
+          		/></Col>
+</Row>
+<Form.Control 
+	type="texte" 
+	onChange={(e)=>{setCheckedM(e.target.value)}
+}
+ />
 <NumericInput
 					className="form-control"
 					id="c-input"
 					min={1} value={checkedN}
 					onChange={(e)=>{if (e && e >= 1) setCheckedN(e);}}
 				/>
-			<button onClick={getFortune}>Get Fortune</button>;
-		</div>
+			<button>add Percent</button>
+			<button onClick={getFortune}>Get Fortune</button>
+		</Container>
 	</div>
 	)
 }

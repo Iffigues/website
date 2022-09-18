@@ -16,7 +16,8 @@ type fortune struct {
 	S   bool `json:"S"`
 	I   bool `json:"I"`
 	U   bool `json:"U"`
-        Nbr   string `json:"nbr"`
+	M   string `json:"M"`
+        N   string `json:"N"`
 }
 
 func handleFortune(w http.ResponseWriter, r *http.Request) {

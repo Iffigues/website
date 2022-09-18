@@ -4,6 +4,10 @@ import (
 	"golang.org/x/net/context"
 )
 
+func (s *Server) GetFortuneFile(ctx context.Context, in *FileFortune)(*Responses, error) {
+	return startExec("fortune",[]string{"-f"})
+}
+
 func (s *Server) GetFortune(ctx context.Context, in *Fortune)(*Responses, error) {
 	var t []string
 

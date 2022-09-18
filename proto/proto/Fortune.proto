@@ -23,7 +23,12 @@ message Fortune {
   repeated Percent Percent= 12;
 }
 
+message FileFortune {
+	string File  = 1;
+}
+
 service FortuneService {
   rpc GetFortune(Fortune) returns (Responses) {}
+  rpc GetFortuneFile(FileFortune) returns (Responses) {}
 }
 
