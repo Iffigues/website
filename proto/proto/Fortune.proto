@@ -23,7 +23,9 @@ message Fortune {
   repeated Percent Percent= 12;
 }
 
-message Empty{}
+message Empty{
+	bool Z = 1;
+}
 
 service FortuneService {
   rpc GetFortune(Fortune) returns (Responses) {}
