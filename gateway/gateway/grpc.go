@@ -6,7 +6,7 @@ import (
 	chat "github.com/Iffigues/website/proto/linuxCommand"
 )
 
-func rigGrpc(a rig) (response *chat.Responses, err error) {
+func rigGrpc(a chat.Rig) (response *chat.Responses, err error) {
 	var conn *grpc.ClientConn
 	conn, errs := grpc.Dial("gopiko.fr:9000", grpc.WithInsecure())
 	if errs != nil {
@@ -14,11 +14,11 @@ func rigGrpc(a rig) (response *chat.Responses, err error) {
 	}
 	defer conn.Close()
 	c := chat.NewRigServiceClient(conn)
-	return c.GetRig(context.Background(), &chat.Rig{Nbr: a.Nbr, Man: a.Man, Woman: a.Woman})
+	return c.GetRig(context.Background(), &a)
 }
 
 
-func fortuneGrpc(a fortune) (response *chat.Responses, err error) {
+func fortuneGrpc(a chat.Fortune) (response *chat.Responses, err error) {
 	e := chat.Fortune{}
 	var conn *grpc.ClientConn
 	conn, errs := grpc.Dial("gopiko.fr:9000", grpc.WithInsecure())
@@ -27,7 +27,6 @@ func fortuneGrpc(a fortune) (response *chat.Responses, err error) {
 	}
 	defer conn.Close()
 	c := chat.NewFortuneServiceClient(conn)
-	e.M = a.M
 	return c.GetFortune(context.Background(), &e)
 }
 

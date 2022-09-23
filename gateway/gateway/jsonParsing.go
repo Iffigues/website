@@ -6,7 +6,7 @@ import (
 )
 
 
-func parseJsonBodyREquest(r *http.Request, data interface{}) (err error) {
+func parseJsonBodyRequest(r *http.Request, data interface{}) (err error) {
 	decoder := json.NewDecoder(r.Body)
 	err = decoder.Decode(&data)
 	if err == nil {

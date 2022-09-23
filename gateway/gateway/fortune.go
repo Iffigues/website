@@ -4,9 +4,15 @@ import (
     "net/http"
     "encoding/json"
     "strings"
+    chat "github.com/Iffigues/website/proto/linuxCommand"
     "fmt"
 )
 
+
+type Percent struct {
+	Name string `json:"name"`
+	Percent string `json"percent"`
+}
 
 type fortune struct {
         A   bool `json:"A"`
@@ -20,6 +26,7 @@ type fortune struct {
 	U   bool `json:"U"`
 	M   string `json:"M"`
         N   string `json:"N"`
+	Percent []Percent `json:"Percent"`
 }
 
 
@@ -38,19 +45,19 @@ func getFileFortuneArray(st string) (a []string){
 func handleFileFortune(w http.ResponseWriter, r *http.Request) {
 	res, err := fortuneFileGrpc()
 	if err != nil {
-		fmt.Println(err)
 		json.NewEncoder(w).Encode(res)
 		return
 	}
-	fmt.Println("res=",res)
-	tab := getFileFortuneArray(res.StdoutResponse)
+	tab := getFileFortuneArray(res.StderrResponse)
 	json.NewEncoder(w).Encode(tab)
 }
 
 func handleFortune(w http.ResponseWriter, r *http.Request) {
-        fortunes := fortune{}
-        parseJsonBodyREquest(r, &fortunes)
-        res, err :=  fortuneGrpc(fortunes)
+	e := chat.Fortune{}
+	parseJsonBodyRequest(r, &e)
+	fmt.Println(e)
+        parseJsonBodyRequest(r, &e)
+        res, err :=  fortuneGrpc(e)
 	if err != nil {
 		json.NewEncoder(w).Encode(res)
 		return

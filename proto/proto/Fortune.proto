@@ -5,7 +5,7 @@ option go_package = ".;linuxCommand";
 
 message Percent {
 	string Percent = 1;
-	string fortune = 2;
+	string Fortune = 2;
 }
 
 message Fortune {

@@ -3,7 +3,8 @@ package main
 import (
     "net/http"
     "encoding/json"
-	"strings"
+    "strings"
+    chat "github.com/Iffigues/website/proto/linuxCommand"
 )
 
 
@@ -31,8 +32,8 @@ func rigToStringArray(e string) (r []RigStruct) {
 }
 
 func handleRig(w http.ResponseWriter, r *http.Request) {
-        rigs := rig{}
-        parseJsonBodyREquest(r, &rigs)
+        rigs := chat.Rig{}
+        parseJsonBodyRequest(r, &rigs)
         res, err :=  rigGrpc(rigs)
 	if err != nil {
 		json.NewEncoder(w).Encode(rigs)

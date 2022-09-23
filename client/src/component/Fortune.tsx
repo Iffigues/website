@@ -13,6 +13,7 @@ interface Percent {
 
 function Fortune() {
 	let y = 1;
+	const [f, setF] = useState(false)
 	const [fortune, setFortune] = useState("");
 	const [checkedA, setCheckedA] = useState(false);
 	const [checkedC, setCheckedC] = useState(false);
@@ -24,20 +25,26 @@ function Fortune() {
 	const [checkedI, setCheckedI] = useState(false);
 	const [checkedU, setCheckedU] = useState(false);
 	const [checkedM, setCheckedM] = useState("");
-	const [checkedN, setCheckedN] = useState(1);
-	const [checkedPercent, setCheckedPercent] = useState<Percent>({});
+	const [checkedN, setCheckedN] = useState("1");
+	const [checkedPercent, setCheckedPercent] = useState<any[]>([],);
+	const [file, setFile] = useState<string[]>([]);
 	const api = new Request("http://gopiko.fr/");
 
 	useEffect(() => {
-		if (y)
+		if (y) {
   			getFortune();
 			getFileFortune();
+		}
 		y = 0;
 	}, []);
 
+	function addPercent() {
+		setCheckedPercent(oldArray => [...oldArray, {Fortune:"", Percent: "", percents: 0}]);	
+	}
+
 	function getFileFortune() {
 		api.Post("/filefortune", {}).then((resp: any) => {
-			console.log(resp.data)
+			setFile(resp.data)
 		})
 	}
 
@@ -53,105 +60,111 @@ function Fortune() {
 			I: checkedI,
 			U: checkedU,
 			M: checkedM,
-			N: checkedN,
-			Percent: getPercent(),
+			N: checkedN.toString(),
+			Percent: checkedPercent,
 			
 		}).then((resp: any) => {
 			setFortune(resp.data.StdoutResponse)
-		});		
+		});
+		console.log(checkedPercent)		
 	};
 
-	function getPercent() {
-		Object.keys(checkedPercent).map((item,index) => {
-			
-		})
+
+function SelectFileFortune(values :any, i :number) {
+  return (
+	<Form.Select
+		value={values.Fortune}
+          	onChange={(e) => {
+			let newArr = [...checkedPercent]; 
+			newArr[i].Fortune = e.target.value
+			setCheckedPercent(newArr)
+		}}
+	>
+		<option>ii</option>
+		{file.map((value :string, index :number) => {return <option value={value}>{value}</option>})}
+	</Form.Select>
+);
+}
+
+
+function SelectPercent() {
+  return (
+	<>
+	{
+		checkedPercent.map((value :any, index :number) => {
+		return (
+			<div>
+				{SelectFileFortune(value, index)}
+				<NumericInput
+					value={value.percents}
+					onChange={(e)=>{
+						let newArr = [...checkedPercent];
+						newArr[index].percents = e;
+						if (e) newArr[index].Percent = '' + e;
+						setCheckedPercent(newArr)
+						value.Percents = e
+					}}	
+				/>
+			</div>
+		)})
 	}
+	</>
+ );
+}
 
 return (
-	<div>
-		<Container fluid><pre>{fortune}</pre></Container>
-		<Container fluid>
-<Row>
-<Col>
-			<p>A</p>
-			<Form.Check 
-				type={"checkbox"}
-				onChange={(e)=>{setCheckedA(e.target.checked)}}
-        			checked={checkedA}
-          		/>
-</Col>
-<Col>
-<p>C</p>
-<Form.Check
-				type={"checkbox"}
-				onChange={(e)=>{setCheckedC(e.target.checked)}}
-        			checked={checkedC}
-          		/></Col>
-<Col>
-<p>E</p>
-<Form.Check
-				type={"checkbox"}
-				onChange={(e)=>{setCheckedE(e.target.checked)}}
-        			checked={checkedE}
-          		/></Col>
-<Col>
-<p>F</p>
-<Form.Check
-				type={"checkbox"}
-				onChange={(e)=>{setCheckedF(e.target.checked)}}
-        			checked={checkedF}
-          		/></Col>
-<Col>
-<p>L</p>
-<Form.Check
-				type={"checkbox"}
-				onChange={(e)=>{setCheckedL(e.target.checked)}}
-        			checked={checkedL}
-          		/></Col>
-<Col>
-<p>O</p>
-<Form.Check
-				type={"checkbox"}
-				onChange={(e)=>{setCheckedO(e.target.checked)}}
-        			checked={checkedO}
-          		/></Col>
-<Col>
-<p>S</p>
-<Form.Check
-				type={"checkbox"}
-				onChange={(e)=>{setCheckedS(e.target.checked)}}
-        			checked={checkedS}
-          		/></Col>
-<Col>
-<p>I</p>
-<Form.Check
-				type={"checkbox"}
-				onChange={(e)=>{setCheckedI(e.target.checked)}}
-        			checked={checkedI}
-          		/></Col>
-<Col>
-<p>U</p>
-<Form.Check
-				type={"checkbox"}
-				onChange={(e)=>{setCheckedU(e.target.checked)}}
-        			checked={checkedU}
-          		/></Col>
-</Row>
-<Form.Control 
-	type="texte" 
-	onChange={(e)=>{setCheckedM(e.target.value)}
-}
- />
-<NumericInput
-					className="form-control"
-					id="c-input"
-					min={1} value={checkedN}
-					onChange={(e)=>{if (e && e >= 1) setCheckedN(e);}}
-				/>
-			<button>add Percent</button>
-			<button onClick={getFortune}>Get Fortune</button>
-		</Container>
-	</div>
+	<Container fluid>
+		<Row>
+			<Col>
+				<Row>
+					<Col>
+						<p>A</p>
+						<Form.Check type={"checkbox"} onChange={(e)=>{setCheckedA(e.target.checked)}} checked={checkedA} />
+					</Col>
+					<Col>
+						<p>C</p>
+						<Form.Check type={"checkbox"} onChange={(e)=>{setCheckedC(e.target.checked)}} checked={checkedC} />
+					</Col>
+					<Col>
+						<p>E</p>
+						<Form.Check type={"checkbox"} onChange={(e)=>{setCheckedE(e.target.checked)}} checked={checkedE} />
+					</Col>
+					<Col>
+						<p>F</p>
+						<Form.Check type={"checkbox"} onChange={(e)=>{setCheckedF(e.target.checked)}} checked={checkedF} />
+					</Col>
+					<Col>
+						<p>L</p>
+						<Form.Check type={"checkbox"} onChange={(e)=>{setCheckedL(e.target.checked)}} checked={checkedL} />
+					</Col>
+					<Col>
+						<p>O</p>
+						<Form.Check type={"checkbox"} onChange={(e)=>{setCheckedO(e.target.checked)}} checked={checkedO} />
+					</Col>
+					<Col>
+						<p>S</p>
+						<Form.Check type={"checkbox"} onChange={(e)=>{setCheckedS(e.target.checked)}} checked={checkedS} />
+					</Col>
+					<Col>
+						<p>I</p>
+						<Form.Check type={"checkbox"} onChange={(e)=>{setCheckedI(e.target.checked)}} checked={checkedI} />
+					</Col>
+					<Col>
+						<p>U</p>
+						<Form.Check type={"checkbox"} onChange={(e)=>{setCheckedU(e.target.checked)}} checked={checkedU} />
+					</Col>
+				</Row>
+				<Form.Control type="texte" onChange={(e)=>{setCheckedM(e.target.value)}}/>
+				<NumericInput className="form-control" id="c-input" min={1} value={checkedN} onChange={(e)=>{if (e && e >= 1) setCheckedN(e.toString());}} />
+				{SelectPercent()}
+				<button onClick={addPercent}> add File</button>
+				<button onClick={getFortune}>Get Fortune</button>
+			</Col>
+			<Col xs={10}>
+				<pre>{fortune}</pre>
+			</Col>
+		</Row>
+	</Container>
 	)
 }
 
