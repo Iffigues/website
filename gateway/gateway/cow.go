@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
     "strings"
     "net/http"
     "encoding/json"
@@ -31,7 +32,9 @@ func handleCowFile(w http.ResponseWriter, r *http.Request) {
 func handleCow(w http.ResponseWriter, r *http.Request) {
 	e := chat.Cow{}
         parseJsonBodyRequest(r, &e)
+	fmt.Println(e)
         res, err :=  cowGrpc(e)
+	println(res.StdoutResponse)
 	if err != nil {
 		json.NewEncoder(w).Encode(res)
 		return
