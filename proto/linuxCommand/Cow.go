@@ -48,8 +48,6 @@ func (s *Server) GetCow(ctx context.Context, in *Cow)(*Responses, error) {
 	if in.F != "" {
 		addOptTab(t, "-f", in.F);
 	}
-	if in.Message != "" {
-		addOptTab(t, in.Message)
-	}
+	t = append(t, in.Message);
 	return startExec(com, t)
 }
