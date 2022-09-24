@@ -155,7 +155,7 @@ return (
 					</Col>
 				</Row>
 				<Form.Control type="texte" onChange={(e)=>{setCheckedM(e.target.value)}}/>
-				<NumericInput className="form-control" id="c-input" min={1} value={checkedN} onChange={(e)=>{if (e && e >= 1) setCheckedN(e.toString());}} />
+				<NumericInput className="form-control"  value={checkedN} onChange={(e)=>{if (e && e >= 1) setCheckedN(e.toString());}} />
 				{SelectPercent()}
 				<button onClick={addPercent}> add File</button>
 				<button onClick={getFortune}>Get Fortune</button>

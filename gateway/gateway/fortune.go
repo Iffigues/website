@@ -5,7 +5,6 @@ import (
     "encoding/json"
     "strings"
     chat "github.com/Iffigues/website/proto/linuxCommand"
-    "fmt"
 )
 
 
@@ -54,8 +53,6 @@ func handleFileFortune(w http.ResponseWriter, r *http.Request) {
 
 func handleFortune(w http.ResponseWriter, r *http.Request) {
 	e := chat.Fortune{}
-	parseJsonBodyRequest(r, &e)
-	fmt.Println(e)
         parseJsonBodyRequest(r, &e)
         res, err :=  fortuneGrpc(e)
 	if err != nil {

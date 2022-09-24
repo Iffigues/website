@@ -19,6 +19,7 @@ func main() {
 	router.HandleFunc("/rig", handleRig).Methods("POST")
 	router.HandleFunc("/fortune", handleFortune).Methods("POST")
 	router.HandleFunc("/filefortune", handleFileFortune).Methods("POST")
+	router.HandleFunc("/cowfile", handleCowFile).Methods("POST")
 	corsObj:=handlers.AllowedOrigins([]string{"*"})
 	headersOk := handlers.AllowedHeaders([]string{"X-Requested-With"})
 	methodsOk := handlers.AllowedMethods([]string{"GET", "HEAD", "POST", "PUT", "OPTIONS"})

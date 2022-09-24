@@ -4,36 +4,30 @@ import Form from 'react-bootstrap/Form';
 import NumericInput from 'react-numeric-input';
 import Container from 'react-bootstrap/Container';
 import Request from './Request'
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card';
 
 function Cow() {
 	let y = 1;
-	const [isThink, setIsThink] = useState(false);
-	const api = new Request("http://gopiko.fr/");
+	const api = new Request("http://gopiko.fr/");	
+	const [file, setFile] = useState<string[]>([]);
 
 	useEffect(() => {
 		if (y)
-  			getCow();
+		getCowFile();
 		y = 0;
 	}, []);
-
-	function getCow () {
-		let endpoint = "cow"
-		if (isThink) {
-			endpoint = "cowthink"
-		}
 	
-		api.Post("/cow", {
-		}).then((resp: any) => {
-		});		
-	};
+	function getCowFile() {
+		api.Post("/cowfile", {}).then((resp: any) => {
+			setFile(resp.data)
+		})
+	}
 
-return (
-	<div>
-		<div></div>
-		<div className="d-flex p-2">
-			<button onClick={getCow}>Get Fortune</button>;
-		</div>
-	</div>
+	return (
+		<Container fluid>
+		</Container>
 	)
 }
 

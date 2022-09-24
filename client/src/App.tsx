@@ -10,28 +10,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Image from 'react-bootstrap/Image'
 import Dropdown from 'react-bootstrap/Dropdown';
 import './asset/App.css';
+import Fortune from './component/Fortune'
+import Cow from './component/Cow'
 import Rig from './component/Rig'
 import Navi from './component/Navi'
-import Fortune from './component/Fortune'
 import Request from './component/Request'
 
 function App() {
-	
-	let y = 1;	
-	const [fortune, setFortune] = useState("");
-	const api = new Request("http://gopiko.fr/");
-	useEffect(() => {
-		if (y)
-  			getFortune();
-		y = 0;
-	}, []);
-
-	function getFortune () {
-		api.Post("/fortune", {
-		}).then((resp: any) => {
-			setFortune(resp.data.StdoutResponse)
-		});
-	};
 	return (
 	<div className="App">
 		<Navi />	
@@ -39,6 +24,7 @@ function App() {
 				<Routes>
 					<Route path="/fortune" element={<Fortune />} />
 					<Route path="/rig" element={<Rig />} />
+					<Route path="/cow" element={<Cow />}/>
 				</Routes>
 			</BrowserRouter>
 		<footer></footer>

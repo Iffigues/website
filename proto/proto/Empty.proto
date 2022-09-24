@@ -1,0 +1,7 @@
+syntax = "proto3";
+package linuxCommand;
+option go_package = ".;linuxCommand";
+
+message Empty{
+	bool Z = 1;
+}

@@ -1,6 +1,7 @@
 syntax = "proto3";
 package linuxCommand;
 import "proto/Response.proto";
+import "proto/Empty.proto";
 option go_package = ".;linuxCommand";
 
 message Percent {
@@ -21,10 +22,6 @@ message Fortune {
   string M = 10;
   string N = 11;
   repeated Percent Percent= 12;
-}
-
-message Empty{
-	bool Z = 1;
 }
 
 service FortuneService {

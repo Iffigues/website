@@ -6,16 +6,14 @@ import Dropdown from 'react-bootstrap/Dropdown';
 
 const Lin = React.forwardRef((props, ref: React.Ref<HTMLDivElement>) => (
 	<Dropdown>
-		<Dropdown.Toggle variant="success" id="dropdown-basic">
-			Dropdown Button
-		</Dropdown.Toggle>		 
-	<Dropdown.Menu>
-        	<Dropdown.Item href="/fortune">Fortune</Dropdown.Item>
-        	<Dropdown.Item href="/rig">Rig</Dropdown.Item>
-        	<Dropdown.Item href="/toiler">Toilet</Dropdown.Item>
-		<Dropdown.Item href="/figlet">Figlet</Dropdown.Item>
-		<Dropdown.Item href="/cowsay">Cowsay</Dropdown.Item>
-	</Dropdown.Menu>
+		<Dropdown.Toggle variant="success" id="dropdown-basic">Play With Liunux</Dropdown.Toggle>		 
+		<Dropdown.Menu>
+        		<Dropdown.Item href="/fortune">Fortune</Dropdown.Item>
+        		<Dropdown.Item href="/rig">Rig</Dropdown.Item>
+        		<Dropdown.Item href="/toiler">Toilet</Dropdown.Item>
+			<Dropdown.Item href="/figlet">Figlet</Dropdown.Item>
+			<Dropdown.Item href="/cow">Cow</Dropdown.Item>
+		</Dropdown.Menu>
 	</Dropdown>
 ));
 
