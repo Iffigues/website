@@ -17,7 +17,7 @@ func main() {
 	grpcServer := grpc.NewServer()
 	chat.RegisterRigServiceServer(grpcServer, &serve)
 	chat.RegisterFortuneServiceServer(grpcServer, &serve)
-	chat.RegisterCowService(grpcServer, &serve)
+	chat.RegisterCowServiceServer(grpcServer, &serve)
 	if err := grpcServer.Serve(listen); err != nil {
 		log.Fatalf("failed to serve: %s", err)
 	}

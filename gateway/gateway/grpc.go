@@ -41,8 +41,9 @@ func fortuneFileGrpc() (response *chat.Responses, err error) {
 	return c.GetFortuneFile(context.Background(), e)
 }
 
-func CowGrpc(a chat.Cow) (response *chat.Responses, err error) {
+func cowGrpc(a chat.Cow) (response *chat.Responses, err error) {
 	var conn *grpc.ClientConn
+	println(a.Message)
 	conn, errs := grpc.Dial("gopiko.fr:9000", grpc.WithInsecure())
 	if errs != nil {
 		return nil, errs
