@@ -5,9 +5,11 @@ import (
 	"bytes"
 	"os/exec"
 	"time"
+	"fmt"
 )
 
 func Exec(Command string, opt []string) (out, er bytes.Buffer, err error) {
+	fmt.Println(Command, opt)
 	cmd := exec.Command(Command, opt...)
 	cmd.Stdout = &out
 	cmd.Stderr  = &er
