@@ -22,7 +22,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CowServiceClient interface {
-	GetFortune(ctx context.Context, in *Cow, opts ...grpc.CallOption) (*Responses, error)
+	GetCow(ctx context.Context, in *Cow, opts ...grpc.CallOption) (*Responses, error)
 	GetCowFile(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Responses, error)
 }
 
@@ -34,9 +34,9 @@ func NewCowServiceClient(cc grpc.ClientConnInterface) CowServiceClient {
 	return &cowServiceClient{cc}
 }
 
-func (c *cowServiceClient) GetFortune(ctx context.Context, in *Cow, opts ...grpc.CallOption) (*Responses, error) {
+func (c *cowServiceClient) GetCow(ctx context.Context, in *Cow, opts ...grpc.CallOption) (*Responses, error) {
 	out := new(Responses)
-	err := c.cc.Invoke(ctx, "/linuxCommand.CowService/GetFortune", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/linuxCommand.CowService/GetCow", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -56,7 +56,7 @@ func (c *cowServiceClient) GetCowFile(ctx context.Context, in *Empty, opts ...gr
 // All implementations must embed UnimplementedCowServiceServer
 // for forward compatibility
 type CowServiceServer interface {
-	GetFortune(context.Context, *Cow) (*Responses, error)
+	GetCow(context.Context, *Cow) (*Responses, error)
 	GetCowFile(context.Context, *Empty) (*Responses, error)
 	mustEmbedUnimplementedCowServiceServer()
 }
@@ -65,8 +65,8 @@ type CowServiceServer interface {
 type UnimplementedCowServiceServer struct {
 }
 
-func (UnimplementedCowServiceServer) GetFortune(context.Context, *Cow) (*Responses, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetFortune not implemented")
+func (UnimplementedCowServiceServer) GetCow(context.Context, *Cow) (*Responses, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCow not implemented")
 }
 func (UnimplementedCowServiceServer) GetCowFile(context.Context, *Empty) (*Responses, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCowFile not implemented")
@@ -84,20 +84,20 @@ func RegisterCowServiceServer(s grpc.ServiceRegistrar, srv CowServiceServer) {
 	s.RegisterService(&CowService_ServiceDesc, srv)
 }
 
-func _CowService_GetFortune_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _CowService_GetCow_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Cow)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CowServiceServer).GetFortune(ctx, in)
+		return srv.(CowServiceServer).GetCow(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/linuxCommand.CowService/GetFortune",
+		FullMethod: "/linuxCommand.CowService/GetCow",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CowServiceServer).GetFortune(ctx, req.(*Cow))
+		return srv.(CowServiceServer).GetCow(ctx, req.(*Cow))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -128,8 +128,8 @@ var CowService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*CowServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetFortune",
-			Handler:    _CowService_GetFortune_Handler,
+			MethodName: "GetCow",
+			Handler:    _CowService_GetCow_Handler,
 		},
 		{
 			MethodName: "GetCowFile",
