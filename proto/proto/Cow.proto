@@ -21,7 +21,7 @@ message Cow {
 }
 
 service CowService {
-  rpc GetFortune(Cow) returns (Responses) {}
+  rpc GetCow(Cow) returns (Responses) {}
   rpc GetCowFile(Empty) returns (Responses) {}
 }
 
