@@ -40,13 +40,16 @@ func (s *Server) GetCow(ctx context.Context, in *Cow)(*Responses, error) {
 		t = append(t, "-w")
 	}
 	if in.E != "" {
-		addOptTab(t, "-e", in.E)
+		t = addOptTab(t, "-e", in.E)
+	}
+	if in.Y {
+		t = append(t, "-y")
 	}
 	if in.TT != "" {
-		addOptTab(t, "-T", in.TT)
+		t = addOptTab(t, "-T", in.TT)
 	}
 	if in.F != "" {
-		addOptTab(t, "-f", in.F);
+		t = addOptTab(t, "-f", in.F);
 	}
 	t = append(t, in.Message);
 	return startExec(com, t)

@@ -18,6 +18,7 @@ message Cow {
 	string TT = 11;
 	string F = 12;
 	string Message = 13;
+	bool Y = 14;
 }
 
 service CowService {

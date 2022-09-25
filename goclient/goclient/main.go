@@ -12,6 +12,7 @@ func main() {
 
     r.HandleFunc("/fortune", index).Methods("GET")
     r.HandleFunc("/rig", index).Methods("GET")
+    r.HandleFunc("/cow", index).Methods("GET")
     buildHandler := http.FileServer(http.Dir("../build"))
     r.PathPrefix("/").Handler(buildHandler)
     srv := &http.Server{

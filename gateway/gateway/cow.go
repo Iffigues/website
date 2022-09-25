@@ -32,9 +32,8 @@ func handleCowFile(w http.ResponseWriter, r *http.Request) {
 func handleCow(w http.ResponseWriter, r *http.Request) {
 	e := chat.Cow{}
         parseJsonBodyRequest(r, &e)
-	fmt.Println(e)
         res, err :=  cowGrpc(e)
-	println(res.StdoutResponse)
+	fmt.Println(err)
 	if err != nil {
 		json.NewEncoder(w).Encode(res)
 		return
