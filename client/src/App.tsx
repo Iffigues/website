@@ -13,6 +13,8 @@ import './asset/App.css';
 import Fortune from './component/Fortune'
 import Cow from './component/Cow'
 import Rig from './component/Rig'
+import Toilet from './component/Toilet'
+import Figlet from './component/Figlet'
 import Navi from './component/Navi'
 import Request from './component/Request'
 
@@ -22,9 +24,11 @@ function App() {
 		<Navi />	
 	    		<BrowserRouter>
 				<Routes>
-					<Route path="/fortune" element={<Fortune />} />
-					<Route path="/rig" element={<Rig />} />
-					<Route path="/cow" element={<Cow />}/>
+					<Route path="/fortune" 	element={<Fortune />}	/>
+					<Route path="/rig" 	element={<Rig />} 	/>
+					<Route path="/cow" 	element={<Cow />} 	/>
+					<Route path="/figlet" 	element={<Figlet />} 	/>
+					<Route path="/toilet" 	element={<Toilet />} 	/>
 				</Routes>
 			</BrowserRouter>
 		<footer></footer>

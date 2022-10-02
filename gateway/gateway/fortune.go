@@ -19,7 +19,7 @@ func getFileFortuneArray(st string) (a []string){
 	return d
 }
 
-func handleFileFortune(w http.ResponseWriter, r *http.Request) {
+func handleFortuneFile(w http.ResponseWriter, r *http.Request) {
 	res, err := fortuneFileGrpc()
 	if err != nil {
 		json.NewEncoder(w).Encode(res)

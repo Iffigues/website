@@ -67,7 +67,7 @@ function Cow() {
 	return (
 		<>
 			<div>
-				<pre>{cow}</pre>
+				<pre style={{"textAlign": "initial"}}>{cow}</pre>
 			</div>
 			<Container fluid>
 				<Form.Check

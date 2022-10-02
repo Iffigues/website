@@ -43,7 +43,7 @@ function Fortune() {
 	}
 
 	function getFileFortune() {
-		api.Post("/filefortune", {}).then((resp: any) => {
+		api.Post("/fortunefile", {}).then((resp: any) => {
 			setFile(resp.data)
 		})
 	}
@@ -161,7 +161,7 @@ return (
 				<button onClick={getFortune}>Get Fortune</button>
 			</Col>
 			<Col xs={10}>
-				<pre>{fortune}</pre>
+				<pre style={{"textAlign": "initial"}}>{fortune}</pre>
 			</Col>
 		</Row>
 	</Container>

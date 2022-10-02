@@ -1,0 +1,25 @@
+syntax = "proto3";
+package linuxCommand;
+import "proto/Empty.proto";
+import "proto/Response.proto";
+option go_package = ".;linuxCommand";
+
+message Toilet {
+ bool S = 1;
+ bool SS = 2;
+ bool K = 3;
+ bool W = 4;
+ bool O = 5;
+ string F = 6;
+ string FF = 7;
+ string FFF = 8;
+ string E = 9;
+ string Message = 10;
+}
+
+service ToiletService {
+  rpc GetToilet(Toilet) returns (Responses) {}
+  rpc GetToiletFFile(Empty) returns (Responses) {}
+  rpc GetToiletEFile(Empty) returns (Responses) {}
+  rpc GetToiletFFFile(Empty) returns (Responses) {}
+}

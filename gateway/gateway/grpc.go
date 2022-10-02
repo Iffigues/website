@@ -64,3 +64,76 @@ func cowFileGrpc() (response *chat.Responses, err error) {
 	c := chat.NewCowServiceClient(conn)
 	return c.GetCowFile(context.Background(), e)
 }
+
+
+func figletGrpc(a chat.Figlet) (response *chat.Responses, err error) {
+	var conn *grpc.ClientConn
+	conn, errs := grpc.Dial("gopiko.fr:9000", grpc.WithInsecure())
+	if errs != nil {
+		return nil, errs
+	}
+	defer conn.Close()
+	c := chat.NewFigletServiceClient(conn)
+	return c.GetFiglet(context.Background(), &a)
+}
+
+func figletFileGrpc() (response *chat.Responses, err error) {
+	var conn *grpc.ClientConn
+	e := &chat.Empty{}
+	conn, errs := grpc.Dial("gopiko.fr:9000", grpc.WithInsecure())
+	if errs != nil {
+		return nil, errs
+	}
+	defer conn.Close()
+	c := chat.NewFigletServiceClient(conn)
+	return c.GetFigletFile(context.Background(), e)
+}
+
+func toiletGrpc(a chat.Toilet) (response *chat.Responses, err error) {
+	var conn *grpc.ClientConn
+	conn, errs := grpc.Dial("gopiko.fr:9000", grpc.WithInsecure())
+	if errs != nil {
+		return nil, errs
+	}
+	defer conn.Close()
+	c := chat.NewToiletServiceClient(conn)
+	return c.GetToilet(context.Background(), &a)
+}
+
+func toiletFFileGrpc() (response *chat.Responses, err error) {
+	var conn *grpc.ClientConn
+	e := &chat.Empty{}
+	conn, errs := grpc.Dial("gopiko.fr:9000", grpc.WithInsecure())
+	if errs != nil {
+		return nil, errs
+	}
+	defer conn.Close()
+	c := chat.NewToiletServiceClient(conn)
+	return c.GetToiletFFile(context.Background(), e)
+}
+
+func toiletEFileGrpc() (response *chat.Responses, err error) {
+	var conn *grpc.ClientConn
+	e := &chat.Empty{}
+	conn, errs := grpc.Dial("gopiko.fr:9000", grpc.WithInsecure())
+	if errs != nil {
+		return nil, errs
+	}
+	defer conn.Close()
+	c := chat.NewToiletServiceClient(conn)
+	return c.GetToiletEFile(context.Background(), e)
+}
+
+
+func toiletFFFileGrpc() (response *chat.Responses, err error) {
+	var conn *grpc.ClientConn
+	e := &chat.Empty{}
+	conn, errs := grpc.Dial("gopiko.fr:9000", grpc.WithInsecure())
+	if errs != nil {
+		return nil, errs
+	}
+	defer conn.Close()
+	c := chat.NewToiletServiceClient(conn)
+	return c.GetToiletFFFile(context.Background(), e)
+}
+

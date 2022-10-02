@@ -10,7 +10,7 @@ const Lin = React.forwardRef((props, ref: React.Ref<HTMLDivElement>) => (
 		<Dropdown.Menu>
         		<Dropdown.Item href="/fortune">Fortune</Dropdown.Item>
         		<Dropdown.Item href="/rig">Rig</Dropdown.Item>
-        		<Dropdown.Item href="/toiler">Toilet</Dropdown.Item>
+        		<Dropdown.Item href="/toilet">Toilet</Dropdown.Item>
 			<Dropdown.Item href="/figlet">Figlet</Dropdown.Item>
 			<Dropdown.Item href="/cow">Cow</Dropdown.Item>
 		</Dropdown.Menu>
