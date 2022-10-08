@@ -22,6 +22,7 @@ func getFileFortuneArray(st string) (a []string){
 
 func handleFortuneFile(w http.ResponseWriter, r *http.Request) {
 	res, err := fortuneFileGrpc()
+	fmt.Println(res, err)
 	if err != nil {
 		json.NewEncoder(w).Encode(res)
 		return
@@ -34,7 +35,7 @@ func handleFortune(w http.ResponseWriter, r *http.Request) {
 	e := chat.Fortune{}
         parseJsonBodyRequest(r, &e)
         res, err :=  fortuneGrpc(e)
-	fmt.Println(res, err)
+	fmt.Println("haha=",res, err, "rr")
 	if err != nil {
 		json.NewEncoder(w).Encode(res)
 		return

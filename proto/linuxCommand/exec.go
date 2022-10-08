@@ -2,6 +2,7 @@ package linuxCommand
 
 
 import (
+	"fmt"
 	"bytes"
 	"os/exec"
 	"time"
@@ -10,6 +11,7 @@ import (
 func Exec(Command string, opt []string) (out, er bytes.Buffer, err error) {
 	path, errs := exec.LookPath("prog")
 	if errs != nil {
+		fmt.Printf(errs)
 		err = err
 		return
 	}
@@ -33,5 +35,6 @@ func Exec(Command string, opt []string) (out, er bytes.Buffer, err error) {
 		if err != nil {
 		}
 	}
+	fmt.Println(out, er, err)
 	return
 }
