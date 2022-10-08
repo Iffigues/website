@@ -5,12 +5,11 @@ import (
 	"bytes"
 	"os/exec"
 	"time"
-	"fmt"
 )
 
 func Exec(Command string, opt []string) (out, er bytes.Buffer, err error) {
 	path, errs := exec.LookPath("prog")
-	if errs {
+	if errs != nil {
 		err = err
 		return
 	}
