@@ -9,8 +9,12 @@ import (
 )
 
 func Exec(Command string, opt []string) (out, er bytes.Buffer, err error) {
-	fmt.Println(Command, opt)
-	cmd := exec.Command(Command, opt...)
+	path, errs := exec.LookPath("prog")
+	if errs {
+		err = err
+		return
+	}
+	cmd := exec.Command(path, opt...)
 	cmd.Stdout = &out
 	cmd.Stderr  = &er
 	err = cmd.Start()

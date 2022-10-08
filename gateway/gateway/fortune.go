@@ -5,6 +5,7 @@ import (
     "encoding/json"
     "strings"
     chat "github.com/Iffigues/website/proto/linuxCommand"
+   "fmt"
 )
 
 func getFileFortuneArray(st string) (a []string){
@@ -33,6 +34,7 @@ func handleFortune(w http.ResponseWriter, r *http.Request) {
 	e := chat.Fortune{}
         parseJsonBodyRequest(r, &e)
         res, err :=  fortuneGrpc(e)
+	fmt.Println(res, err)
 	if err != nil {
 		json.NewEncoder(w).Encode(res)
 		return
