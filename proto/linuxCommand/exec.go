@@ -11,7 +11,7 @@ import (
 func Exec(Command string, opt []string) (out, er bytes.Buffer, err error) {
 	path, errs := exec.LookPath("prog")
 	if errs != nil {
-		fmt.Printf(errs)
+		fmt.Println(errs)
 		err = err
 		return
 	}
