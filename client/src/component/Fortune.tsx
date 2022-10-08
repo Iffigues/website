@@ -64,9 +64,8 @@ function Fortune() {
 			Percent: checkedPercent,
 			
 		}).then((resp: any) => {
-			setFortune(resp.data.StdoutResponse)
+			if (resp.data && resp.data.StdoutResponse) setFortune(resp.data.StdoutResponse)
 		});
-		console.log(checkedPercent)		
 	};
 
 

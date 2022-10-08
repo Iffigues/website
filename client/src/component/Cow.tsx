@@ -52,8 +52,7 @@ function Cow() {
 			Y: checkedY,
 			Message: message,
 		}).then((resp: any) => {
-			setCow(resp.data.StdoutResponse)
-			console.log(resp)
+			if(resp.data && resp.data.StdoutResponse) setCow(resp.data.StdoutResponse)
 		});
 	};
 	

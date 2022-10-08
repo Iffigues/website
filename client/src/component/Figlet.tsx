@@ -49,33 +49,9 @@ function Figlet() {
 
 	function getFiglet () {
 		api.Post("/figlet", {
-			R: checkedR,
-			X: checkedX,
-			L: checkedL,
-			RR: checkedRR,
-			XX: checkedXX,
-			LL: checkedLL,
-			C: checkedC,
-			P: checkedP,
-			N: checkedN,
-			O: checkedO,
-			W: checkedW,
-			K: checkedK,
-			S: checkedS,
-			SS: checkedSS,
-			NN: checkedNN,
-			E: checkedE,
-			D: checkedD,
-			T: checkedT,
-			NNN: checkedNNN,
-			Message: message,
-			WW: checkedWW,
-			M: checkedM,
-			F: checkedFFile,
-			CC: checkedEFile
+			R: checkedR, X: checkedX, L: checkedL, RR: checkedRR, XX: checkedXX, LL: checkedLL, C: checkedC, P: checkedP, N: checkedN, O: checkedO,W: checkedW, K: checkedK, S: checkedS, SS: checkedSS, NN: checkedNN, E: checkedE, D: checkedD, T: checkedT, NNN: checkedNNN, Message: message, WW: checkedWW, M: checkedM, F: checkedFFile, CC: checkedEFile
 		}).then((resp: any) => {
-			console.log(resp.data)
-			setFiglet(resp.data.StdoutResponse)
+			if (resp.data && resp.data.StdoutResponse) setFiglet(resp.data.StdoutResponse)
 		});
 	};
 
@@ -88,10 +64,7 @@ function Figlet() {
 
 	function SelectFileFFiglet() {
 		return (
-			<Form.Select
-				value={checkedFFile}
-	        	  	onChange={(e) => {setCheckedFFile(e.target.value)}}
-			>
+			<Form.Select value={checkedFFile} onChange={(e) => {setCheckedFFile(e.target.value)}}>
 				<option>ii</option>
 				{fileF.map((value :string, index :number) => {return <option value={value}>{value}</option>})}
 			</Form.Select>
@@ -100,10 +73,7 @@ function Figlet() {
 
 	function SelectFileEFiglet() {
 		return (
-			<Form.Select
-				value={checkedEFile}
-	        	  	onChange={(e) => {setCheckedEFile(e.target.value)}}
-			>
+			<Form.Select value={checkedEFile} onChange={(e) => {setCheckedEFile(e.target.value)}}>
 				<option>ii</option>
 				{fileE.map((value :string, index :number) => {return <option value={value}>{value}</option>})}
 			</Form.Select>
