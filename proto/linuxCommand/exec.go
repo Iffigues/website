@@ -9,7 +9,7 @@ import (
 )
 
 func Exec(Command string, opt []string) (out, er bytes.Buffer, err error) {
-	path, errs := exec.LookPath("prog")
+	path, errs := exec.LookPath(Command)
 	if errs != nil {
 		fmt.Println(errs)
 		err = err
