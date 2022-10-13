@@ -1,0 +1,28 @@
+syntax = "proto3";
+package linuxCommand;
+import "proto/Response.proto";
+import "proto/Empty.proto";
+option go_package = ".;linuxCommand";
+
+message Cow {
+	bool Think = 1;
+	bool L = 2;
+	bool B = 3;
+	bool D = 4;
+	bool G = 5;
+	bool P = 6;
+	bool S = 7;
+	bool T = 8;
+	bool W = 9;
+	string E = 10;
+	string TT = 11;
+	string F = 12;
+	string Message = 13;
+	bool Y = 14;
+}
+
+service CowService {
+  rpc GetCow(Cow) returns (Responses) {}
+  rpc GetCowFile(Empty) returns (Responses) {}
+}
+

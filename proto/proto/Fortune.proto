@@ -1,0 +1,31 @@
+syntax = "proto3";
+package linuxCommand;
+import "proto/Response.proto";
+import "proto/Empty.proto";
+option go_package = ".;linuxCommand";
+
+message Percent {
+	string Percent = 1;
+	string Fortune = 2;
+}
+
+message Fortune {
+  bool A = 1;
+  bool C = 2;
+  bool E = 3;
+  bool F = 4;
+  bool L = 5;
+  bool O = 6;
+  bool S = 7;
+  bool I = 8;
+  bool U = 9;
+  string M = 10;
+  string N = 11;
+  repeated Percent Percent= 12;
+}
+
+service FortuneService {
+  rpc GetFortune(Fortune) returns (Responses) {}
+  rpc GetFortuneFile(Empty) returns (Responses) {}
+}
+
