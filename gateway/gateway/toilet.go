@@ -75,7 +75,7 @@ func handleToilet(w http.ResponseWriter, r *http.Request) {
         parseJsonBodyRequest(r, &e)
         res, err :=  toiletGrpc(e)
 	if err != nil {
-		json.NewEncoder(w).Encode(res)
+		http.Error(w, http.StatusText(http.StatusNotFound), http.StatusNotFound)
 		return
 	}
         json.NewEncoder(w).Encode(res)

@@ -1,6 +1,7 @@
 FROM  golang:latest
 
-ENV PATH="$PATH:$(go env GOPATH)/bin"
+
+ENV PATH="$PATH:/usr/games:$(go env GOPATH)/bin"
 RUN apt -y update
 RUN apt -y upgrade
 

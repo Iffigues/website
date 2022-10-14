@@ -22,7 +22,7 @@ func getCowFileArray(st string) (a []string){
 func handleCowFile(w http.ResponseWriter, r *http.Request) {
 	res, err := cowFileGrpc()
 	if err != nil {
-		json.NewEncoder(w).Encode(res)
+		http.Error(w, http.StatusText(http.StatusNotFound), http.StatusNotFound)
 		return
 	}
 	tab := getCowFileArray(res.StdoutResponse)
@@ -35,7 +35,7 @@ func handleCow(w http.ResponseWriter, r *http.Request) {
         res, err :=  cowGrpc(e)
 	fmt.Println(err)
 	if err != nil {
-		json.NewEncoder(w).Encode(res)
+		http.Error(w, http.StatusText(http.StatusNotFound), http.StatusNotFound)
 		return
 	}
         json.NewEncoder(w).Encode(res)

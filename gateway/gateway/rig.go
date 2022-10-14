@@ -36,11 +36,12 @@ func handleRig(w http.ResponseWriter, r *http.Request) {
         parseJsonBodyRequest(r, &rigs)
         res, err :=  rigGrpc(rigs)
 	if err != nil {
-		json.NewEncoder(w).Encode(rigs)
+		http.Error(w, http.StatusText(http.StatusNotFound), http.StatusNotFound)
 		return
 	}
 	data := rigToStringArray(res.StdoutResponse)
 	if err != nil {
+		http.Error(w, http.StatusText(http.StatusNotFound), http.StatusNotFound)
 		return
 	}
         json.NewEncoder(w).Encode(data)

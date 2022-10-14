@@ -24,7 +24,7 @@ func getFileFigletArray(st string) (a []string, b []string){
 func handleFigletFile(w http.ResponseWriter, r *http.Request) {
 	res, err := figletFileGrpc()
 	if err != nil {
-		json.NewEncoder(w).Encode(res)
+		 http.Error(w, http.StatusText(http.StatusNotFound), http.StatusNotFound)
 		return
 	}
 	ee :=  FileFiglet{}
@@ -39,7 +39,7 @@ func handleFiglet(w http.ResponseWriter, r *http.Request) {
         res, err :=  figletGrpc(e)
 	fmt.Println(e)
 	if err != nil {
-		json.NewEncoder(w).Encode(res)
+		http.Error(w, http.StatusText(http.StatusNotFound), http.StatusNotFound)
 		return
 	}
         json.NewEncoder(w).Encode(res)

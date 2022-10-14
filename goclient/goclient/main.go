@@ -19,7 +19,7 @@ func main() {
     r.PathPrefix("/").Handler(buildHandler)
     srv := &http.Server{
         Handler:      r,
-        Addr:         ":8080",
+        Addr:         ":80",
         WriteTimeout: 15 * time.Second,
         ReadTimeout:  15 * time.Second,
     }
