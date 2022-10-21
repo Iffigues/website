@@ -14,14 +14,8 @@ message Toilet {
  string FF = 7;
  string FFF = 8;
  string E = 9;
- string F3 = 10;
- string F4 = 11;
- string F5 = 12;
- string F6 = 13;
- string F7 = 14;
- string F8 = 15;
- string F9 = 16; 
- string Message = 117;
+ repeated string F3 = 10;
+ string Message = 11;
 }
 
 service ToiletService {

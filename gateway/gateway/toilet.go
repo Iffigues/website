@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+    "fmt"
     "net/http"
     "strings"
     "encoding/json"
@@ -16,7 +16,6 @@ type Toilet struct {
 
 
 func getFileFToiletArray(st string) (a []string){
-	fmt.Println("rr", st)
 	ll := strings.Split(string(st), "Figlet control files in this directory:")
 	a = strings.Split(ll[0], "\n")[3:]
 	a[len(a) - 1] = "mono12"
@@ -24,7 +23,6 @@ func getFileFToiletArray(st string) (a []string){
 }
 
 func getFileEToiletArray(st string) (a []string){
-	fmt.Println("zz", st)
 	ff := strings.Split(string(st), "\n")
 	for _, val :=  range ff[1:len(ff) - 1] {
 		r := strings.Split(val, "\"")
@@ -35,7 +33,6 @@ func getFileEToiletArray(st string) (a []string){
 
 func handleToiletFFile() (tab []string) {
 	res, err := toiletFFileGrpc()
-	fmt.Println("haha", res)
 	if err != nil {
 		return
 	}
@@ -57,7 +54,6 @@ func handleToiletFFFile() (tab []string) {
 	if err != nil {
 		return
 	}
-	fmt.Println("hoho", res)
 	return getFileFToiletArray(res.StdoutResponse)
 }
 
@@ -73,7 +69,8 @@ func handleToiletFile(w http.ResponseWriter, r *http.Request) {
 func handleToilet(w http.ResponseWriter, r *http.Request) {
 	e := chat.Toilet{}
         parseJsonBodyRequest(r, &e)
-        res, err :=  toiletGrpc(e)
+        fmt.Println(e,e.F3)
+	res, err :=  toiletGrpc(e)
 	if err != nil {
 		http.Error(w, http.StatusText(http.StatusNotFound), http.StatusNotFound)
 		return

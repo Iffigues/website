@@ -49,35 +49,9 @@ func (s *Server) GetToilet(ctx context.Context, in *Toilet) (*Responses, error) 
 		t = addOptTab(t, "-E", in.E)
 	}
 
-	if in.F3 != "" {
-		t = addOptTab(t, "-F", in.F3)
+	for _, val := range in.F3 {
+		t = addOptTab(t, "-F", val)
 	}
-
-	if in.F4 != "" {
-		t = addOptTab(t, "-F", in.F4)
-	}
-
-	if in.F5 != "" {
-		t = addOptTab(t, "-F", in.F5)
-	}
-
-	if in.F6 != "" {
-		t = addOptTab(t, "-F", in.F6)
-	}
-
-	if in.F7 != "" {
-		t = addOptTab(t, "-F", in.F7)
-	}
-
-
-	if in.F8 != "" {
-		t = addOptTab(t, "-F", in.F8)
-	}
-
-	if in.F9 != "" {
-		t = addOptTab(t, "-F", in.F9)
-	}
-
 
 	if in.Message != "" {
 		t = append(t, in.Message)
