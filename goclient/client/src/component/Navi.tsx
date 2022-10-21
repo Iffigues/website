@@ -3,6 +3,7 @@ import { Navbar, Container, Nav, Form, FormControl,Button } from 'react-bootstra
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Image from 'react-bootstrap/Image'
 import Dropdown from 'react-bootstrap/Dropdown';
+import ReactLogo  from '../asset/logo.png';
 
 const Lin = React.forwardRef((props, ref: React.Ref<HTMLDivElement>) => (
 	<Dropdown>
@@ -30,7 +31,7 @@ return (
         style={{ maxHeight: '100px' }}
         navbarScroll
       >
-        <Nav.Link href="/">Home</Nav.Link>
+        <Nav.Link href="/"><Image src={ReactLogo} alt="React Logo" fluid/></Nav.Link>
         <Lin />
       </Nav>
     </Navbar.Collapse>

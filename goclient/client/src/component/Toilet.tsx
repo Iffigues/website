@@ -4,24 +4,12 @@ import Form from 'react-bootstrap/Form';
 import NumericInput from 'react-numeric-input';
 import Container from 'react-bootstrap/Container';
 import Request from './Request'
+import Save from './Save'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-
+import GetImg from './Img'
 const style = {
-    "display": "table",
-    "border-collapse": "separate",
-    "box-sizing": "border-box",
-    "text-indent": "initial",
-    "white-space": "normal",
-    "line-height": "normal",
-    "font-weight": "normal",
-    "font-size": "medium",
-    "font-style": "normal",
-    "color": "-internal-quirk-inherit",
-    "text-align": "start",
-    "border-spacing": "2px",
-    "border-color": "grey",
-    "font-variant": "normal",
+	lineHeight:"initial"
 }
 
 function Toilet() {
@@ -44,6 +32,17 @@ function Toilet() {
 	const [l, setL] = useState("")
 	const [ll, setLl] = useState("")
 
+	
+	const [f3, setF3] = useState("")
+	const [f4, setF4] = useState("")
+	const [f5, setF5] = useState("")
+	const [f6, setF6] = useState("")
+	const [f7, setF7] = useState("")
+	const [f8, setF8] = useState("")
+	const [f9, setF9] = useState("")
+
+
+
 	const d = React.useRef<HTMLDivElement>(null);
 	const dd = React.useRef<HTMLDivElement>(null);
 
@@ -63,35 +62,37 @@ function Toilet() {
 	}
 
 	function save () {
-		const blob = new Blob([l], { type: "plain/text" });
-  		const href = URL.createObjectURL(blob);
-		const link = document.createElement("a");
-  		link.href = href;
-  		link.download =	"save.txt";
-  		document.body.appendChild(link);
-  		link.click();
-		document.body.removeChild(link);
-		URL.revokeObjectURL(href);
+		Save(l, "plain/text", "toilet.txt")
 	}
 
 	function getToilet () {
 		api.Post("/toilet", {
-			S: s, SS:ss, K: k, W: w, O: o, F: ffs, FF: fff, FFF: ffff, E: ee, Message: message
+			S: s, SS:ss, K: k, W: w, O: o, F: ffs, FF: fff, FFF: ffff, E: ee, 
+			F3:f3, F4:f4, F5:f5, F6:f6, F7:f7, F8:f8, F9:f9, Message: message
 		}).then((resp: any) => {
 			if (resp.data && resp.data.StdoutResponse) {
 				setL(resp.data.StdoutResponse)
 				let s = document.getElementById("mes");
 				let ss = document.getElementById('mos');
 				if (ee == "html3" || ee == "html" || ee == "svg") {
-					if (s) s.style.display='block';
+					if (s) s.style.display='inline-flex';
 					if (ss) ss.style.display='none';
 				} else {
 					if (s) s.style.display='none';
-					if (ss) ss.style.display='block';
+					if (ss) ss.style.display='inline-flex';
 				}
 			}
 		});		
 	};
+
+	function getImg() {
+		let y = "mos";
+		if (ee == "html3" || ee == "html" || ee == "svg")
+			y = "mes"	
+	
+		let e = document.getElementById(y);
+		GetImg(e)
+	}
 
 	function Select1() {
 		return (
@@ -129,12 +130,93 @@ function Toilet() {
 		);
 	}	
 	
+	
+
+
+
+
+
+
+	function Select5() {
+		return (
+			<Form.Select value={f3} onChange={(e) => {setF3(e.target.value)}}>
+				<option value={""}>ii</option>
+				{f.map((value :string, index :number) => {return <option value={value}>{value}</option>})}
+			</Form.Select>
+		);
+	}
+	
+	function Select6() {
+		return (
+			<Form.Select value={f4} onChange={(e) => {setF4(e.target.value)}}>
+				<option value={""}>ii</option>
+				{f.map((value :string, index :number) => {return <option value={value}>{value}</option>})}
+			</Form.Select>
+		);
+	}
+
+	function Select7() {
+		return (
+			<Form.Select value={f5} onChange={(e) => {setF5(e.target.value)}}>
+				<option value={""}>ii</option>
+				{f.map((value :string, index :number) => {return <option value={value}>{value}</option>})}
+			</Form.Select>
+		);
+	}
+
+	function Select8() {
+		return (
+			<Form.Select value={f6} onChange={(e) => {setF6(e.target.value)}}>
+				<option value={""}>ii</option>
+				{f.map((value :string, index :number) => {return <option value={value}>{value}</option>})}
+			</Form.Select>
+		);
+	}
+
+	function Select9() {
+		return (
+			<Form.Select value={f7} onChange={(e) => {setF7(e.target.value)}}>
+				<option value={""}>ii</option>
+				{f.map((value :string, index :number) => {return <option value={value}>{value}</option>})}
+			</Form.Select>
+		);
+	}
+	
+	function Select10() {
+		return (
+			<Form.Select value={f8} onChange={(e) => {setF8(e.target.value)}}>
+				<option value={""}>ii</option>
+				{f.map((value :string, index :number) => {return <option value={value}>{value}</option>})}
+			</Form.Select>
+		);
+	}
+
+	function Select11() {
+		return (
+			<Form.Select value={f9} onChange={(e) => {setF9(e.target.value)}}>
+				<option value={""}>ii</option>
+				{f.map((value :string, index :number) => {return <option value={value}>{value}</option>})}
+			</Form.Select>
+		);
+	}
 
 	return (
 		<div>
 			<div>
-				<div id="mes"  style={style} dangerouslySetInnerHTML={{ __html: l}} />
-				<pre id="mos">{l}</pre>
+				<div id="mes"  style={
+					{
+  						 "display": "inline-flex",
+ 						 "alignItems": "center",
+  						 "justifyContent": "center",
+					}
+				} dangerouslySetInnerHTML={{ __html: l}} />
+				<div style={
+					{
+  						 "display": "flex",
+ 						 "alignItems": "center",
+  						 "justifyContent": "center",
+					}
+				}><pre id="mos">{l}</pre></div>
 			</div>
 			<Row>
 				<Col><Form.Check type={"checkbox"} onChange={(e)=>{setS(e.target.checked)}} checked={s} /></Col>
@@ -144,17 +226,28 @@ function Toilet() {
 				<Col><Form.Check type={"checkbox"} onChange={(e)=>{setO(e.target.checked)}} checked={o} /></Col>
 			</Row>
 			<Row>
-				<Col>{Select1()}</Col>
-				<Col>{Select2()}</Col>
 			</Row>
 			<Row>
-				<Col>{Select3()}</Col>
+				<Col>{Select1()}</Col>
 				<Col>{Select4()}</Col>
+			</Row>
+			<Row>
+				
+				<Col>{Select3()}</Col>
+				<Col>{Select2()}</Col>
+				<Col>{Select5()}</Col>
+				<Col>{Select6()}</Col>
+				<Col>{Select7()}</Col>
+				<Col>{Select8()}</Col>
+				<Col>{Select9()}</Col>
+				<Col>{Select10()}</Col>
+				<Col>{Select11()}</Col>
 			</Row>
 			<Form.Control  as="textarea" rows={3} onChange={(e)=>{Message(e.target.value)}}/>	
 			<div className="d-flex p-2">
 				<button onClick={getToilet}>Get Fortune</button>;
 				<button onClick={save}>Save</button>
+				<button onClick={getImg}>get Image</button>
 			</div>
 		</div>
 	)

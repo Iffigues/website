@@ -3,6 +3,8 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import NumericInput from 'react-numeric-input';
 import Container from 'react-bootstrap/Container';
+import Save from './Save'
+import GetImg from './Img'
 import Request from './Request'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -80,20 +82,21 @@ function Figlet() {
 		);
 	}
 	function save () {
-		const blob = new Blob([figlet], { type: "plain/text" });
-  		const href = URL.createObjectURL(blob);
-		const link = document.createElement("a");
-  		link.href = href;
-  		link.download =	"save.txt";
-  		document.body.appendChild(link);
-  		link.click();
-		document.body.removeChild(link);
-		URL.revokeObjectURL(href);
+		Save(figlet, "plain/text", "figlet.txt")
 	}
+
+	function getImg() {
+                let e = document.getElementById("fig");
+                GetImg(e)
+        }
 
 	return (
 		<>
-			<pre>{figlet}</pre>
+			<pre id="fig" style={{
+  						 "display": "inline-flex",
+ 						 "alignItems": "center",
+  						 "justifyContent": "center",
+					}}>{figlet}</pre>
 			<Row>
 			<Col><Form.Check type={"checkbox"} onChange={(e)=>{setCheckedR(e.target.checked)}} checked={checkedR} /></Col>
 			<Col><Form.Check type={"checkbox"} onChange={(e)=>{setCheckedX(e.target.checked)}} checked={checkedX} /></Col>
@@ -124,6 +127,7 @@ function Figlet() {
 			<Form.Control type="texte" onChange={(e)=>{setMessage(e.target.value)}}/>
 			<button onClick={()=>{getFiglet()}}>ok</button>
 			<button onClick={save} >Save</button>
+			<button onClick={getImg}>get Image</button>
 		</>
 	)
 }

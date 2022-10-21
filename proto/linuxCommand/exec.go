@@ -2,30 +2,33 @@ package linuxCommand
 
 
 import (
-	"fmt"
+	"strings"
 	"bytes"
 	"os/exec"
 	"time"
 	"os"
 )
 
-func Exec(Command string, opt []string) (out, er bytes.Buffer, err error) {
+func logs(Command string, opt []string) {
 
-	f, err := os.OpenFile("/log/linuxtool.log", os.O_WRONLY|os.O_APPEND, 0644)
-	if err == nil {
-		defer f.Close()
-		var tt string = Command
-		for _, e := range opt {
-			tt = tt + " " + e
-		}
-		tt = tt + "\n"
-		f.WriteString(tt)
+	f, err := os.OpenFile("/log/linuxtool.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+
+	if err != nil {
+		return
 	}
+	defer f.Close()
+	ar := append([]string{Command}, opt...)
+	tt := strings.Join(ar[:], ",")
+	tt = tt + "\n"
+	f.WriteString(tt)
 
+}
+
+func Exec(Command string, opt []string) (out, er bytes.Buffer, err error) {
+	logs(Command, opt)
 	path, errs := exec.LookPath(Command)
 	if errs != nil {
-		fmt.Println(errs)
-		err = err
+		err = errs
 		return
 	}
 	cmd := exec.Command(path, opt...)
@@ -41,13 +44,14 @@ func Exec(Command string, opt []string) (out, er bytes.Buffer, err error) {
 	}()
 	select {
 	case <-time.After(60 * time.Second):
-		if err := cmd.Process.Kill(); err != nil {
+		if errs := cmd.Process.Kill(); errs != nil {
+			return out, er, errs
 		}
 		return
-	case err := <-done:
-		if err != nil {
+	case erro := <-done:
+		if erro != nil {
+			return out, er, erro
 		}
 	}
-	fmt.Println(out, er, err)
 	return
 }

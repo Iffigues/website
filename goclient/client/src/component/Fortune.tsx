@@ -6,7 +6,8 @@ import Container from 'react-bootstrap/Container';
 import Request from './Request'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-
+import GetImg from './Img'
+import Save from './Save'
 interface Percent {
    [key: string]: string;
 }
@@ -68,113 +69,115 @@ function Fortune() {
 		});
 	};
 
-
-function SelectFileFortune(values :any, i :number) {
-  return (
-	<Form.Select
-		value={values.Fortune}
-          	onChange={(e) => {
-			let newArr = [...checkedPercent]; 
-			newArr[i].Fortune = e.target.value
-			setCheckedPercent(newArr)
-		}}
-	>
-		<option>ii</option>
-		{file.map((value :string, index :number) => {return <option value={value}>{value}</option>})}
-	</Form.Select>
-);
-}
-
-
-function SelectPercent() {
-  return (
-	<>
-	{
-		checkedPercent.map((value :any, index :number) => {
+	function SelectFileFortune(values :any, i :number) {
 		return (
-			<div>
-				{SelectFileFortune(value, index)}
-				<NumericInput
-					value={value.percents}
-					onChange={(e)=>{
-						let newArr = [...checkedPercent];
-						newArr[index].percents = e;
-						if (e) newArr[index].Percent = '' + e;
-						setCheckedPercent(newArr)
-						value.Percents = e
-					}}	
-				/>
-			</div>
-		)})
+			<Form.Select
+				value={values.Fortune}
+        		  	onChange={(e) => {
+				let newArr = [...checkedPercent]; 
+				newArr[i].Fortune = e.target.value
+				setCheckedPercent(newArr)
+			}}
+			>
+			<option>ii</option>
+			{file.map((value :string, index :number) => {return <option value={value}>{value}</option>})}
+		</Form.Select>
+		);
 	}
-	</>
- );
-}
-function save () {
-		const blob = new Blob([fortune], { type: "plain/text" });
-  		const href = URL.createObjectURL(blob);
-		const link = document.createElement("a");
-  		link.href = href;
-  		link.download =	"save.txt";
-  		document.body.appendChild(link);
-  		link.click();
-		document.body.removeChild(link);
-		URL.revokeObjectURL(href);
+
+
+	function SelectPercent() {
+		return (
+			<>
+				{
+					checkedPercent.map((value :any, index :number) => {
+						return (
+							<div>
+								{SelectFileFortune(value, index)}
+								<NumericInput
+									value={value.percents}
+									onChange={(e)=>{
+										let newArr = [...checkedPercent];
+										newArr[index].percents = e;
+										if (e) newArr[index].Percent = '' + e;
+											setCheckedPercent(newArr)
+											value.Percents = e
+									}}	
+								/>
+							</div>
+					)})
+				}
+			</>
+ 		);
 	}
-return (
-	<Container fluid>
-		<Row>
-			<Col>
-				<Row>
-					<Col>
-						<p>A</p>
-						<Form.Check type={"checkbox"} onChange={(e)=>{setCheckedA(e.target.checked)}} checked={checkedA} />
-					</Col>
-					<Col>
-						<p>C</p>
-						<Form.Check type={"checkbox"} onChange={(e)=>{setCheckedC(e.target.checked)}} checked={checkedC} />
-					</Col>
-					<Col>
-						<p>E</p>
-						<Form.Check type={"checkbox"} onChange={(e)=>{setCheckedE(e.target.checked)}} checked={checkedE} />
-					</Col>
-					<Col>
-						<p>F</p>
-						<Form.Check type={"checkbox"} onChange={(e)=>{setCheckedF(e.target.checked)}} checked={checkedF} />
-					</Col>
-					<Col>
-						<p>L</p>
-						<Form.Check type={"checkbox"} onChange={(e)=>{setCheckedL(e.target.checked)}} checked={checkedL} />
-					</Col>
-					<Col>
-						<p>O</p>
-						<Form.Check type={"checkbox"} onChange={(e)=>{setCheckedO(e.target.checked)}} checked={checkedO} />
-					</Col>
-					<Col>
-						<p>S</p>
-						<Form.Check type={"checkbox"} onChange={(e)=>{setCheckedS(e.target.checked)}} checked={checkedS} />
-					</Col>
-					<Col>
-						<p>I</p>
-						<Form.Check type={"checkbox"} onChange={(e)=>{setCheckedI(e.target.checked)}} checked={checkedI} />
-					</Col>
-					<Col>
-						<p>U</p>
-						<Form.Check type={"checkbox"} onChange={(e)=>{setCheckedU(e.target.checked)}} checked={checkedU} />
-					</Col>
-				</Row>
-				<Form.Control type="texte" onChange={(e)=>{setCheckedM(e.target.value)}}/>
-				<NumericInput className="form-control"  value={checkedN} onChange={(e)=>{if (e && e >= 1) setCheckedN(e.toString());}} />
-				{SelectPercent()}
-				<button onClick={addPercent}> add File</button>
-				<button onClick={getFortune}>Get Fortune</button>
-				<button onClick={save}>Save</button>
-			</Col>
-			<Col xs={10}>
-				<pre style={{"textAlign": "initial"}}>{fortune}</pre>
-			</Col>
-		</Row>
-	</Container>
+	function save () {
+		Save(fortune, "plain/text", "fortune.txt")
+	}
+
+	function getImg() {
+		let e = document.getElementById("dd");
+		GetImg(e)
+	}
+
+	return (
+		<Container fluid>
+			<Row>
+				<Col>
+					<Row>
+						<Col>
+							<p>A</p>
+							<Form.Check type={"checkbox"} onChange={(e)=>{setCheckedA(e.target.checked)}} checked={checkedA} />
+						</Col>
+						<Col>
+							<p>C</p>
+							<Form.Check type={"checkbox"} onChange={(e)=>{setCheckedC(e.target.checked)}} checked={checkedC} />
+						</Col>
+						<Col>
+							<p>E</p>
+							<Form.Check type={"checkbox"} onChange={(e)=>{setCheckedE(e.target.checked)}} checked={checkedE} />
+						</Col>
+						<Col>
+							<p>F</p>
+							<Form.Check type={"checkbox"} onChange={(e)=>{setCheckedF(e.target.checked)}} checked={checkedF} />
+						</Col>
+						<Col>
+							<p>L</p>
+							<Form.Check type={"checkbox"} onChange={(e)=>{setCheckedL(e.target.checked)}} checked={checkedL} />
+						</Col>
+						<Col>
+							<p>O</p>
+							<Form.Check type={"checkbox"} onChange={(e)=>{setCheckedO(e.target.checked)}} checked={checkedO} />
+						</Col>
+						<Col>
+							<p>S</p>
+							<Form.Check type={"checkbox"} onChange={(e)=>{setCheckedS(e.target.checked)}} checked={checkedS} />
+						</Col>
+						<Col>
+							<p>I</p>
+							<Form.Check type={"checkbox"} onChange={(e)=>{setCheckedI(e.target.checked)}} checked={checkedI} />
+						</Col>
+						<Col>
+							<p>U</p>
+							<Form.Check type={"checkbox"} onChange={(e)=>{setCheckedU(e.target.checked)}} checked={checkedU} />
+						</Col>
+					</Row>
+					<Form.Control type="texte" onChange={(e)=>{setCheckedM(e.target.value)}}/>
+					<NumericInput className="form-control"  value={checkedN} onChange={(e)=>{if (e && e >= 1) setCheckedN(e.toString());}} />
+					{SelectPercent()}
+					<button onClick={addPercent}> add File</button>
+					<button onClick={getFortune}>Get Fortune</button>
+					<button onClick={save}>Save</button>
+					<button onClick={getImg}>get Image</button>
+				</Col>
+				<Col xs={10}>
+					<pre id="dd" style={{"textAlign": "initial",
+  						 "display": "inline-flex",
+ 						 "alignItems": "center",
+  						 "justifyContent": "center",
+					}}>{fortune}</pre>
+				</Col>
+			</Row>
+		</Container>
 	)
 }
 

@@ -7,16 +7,32 @@ import (
     "time"
 )
 
+func loggingMiddleware(next http.Handler) http.Handler {
+    return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+        // Do stuff here
+        log.Println(r.RequestURI)
+        // Call the next handler, which can be another middleware in the chain, or the final handler.
+        next.ServeHTTP(w, r)
+    })
+}
+
 func main() {
     r := mux.NewRouter()
 
-    r.HandleFunc("/fortune", index).Methods("GET")
-    r.HandleFunc("/rig", index).Methods("GET")
-    r.HandleFunc("/cow", index).Methods("GET")
-    r.HandleFunc("/figlet", index).Methods("GET")
-    r.HandleFunc("/toilet", index).Methods("GET")
+    url := []string{
+	"/fortune",
+	"/rig",
+	"/cow",
+	"/figlet",
+	"/toilet",
+    }
+
+    for _, val := range url {
+	r.HandleFunc(val, index).Methods("GET")
+    }
     buildHandler := http.FileServer(http.Dir("../build"))
     r.PathPrefix("/").Handler(buildHandler)
+    r.Use(loggingMiddleware)
     srv := &http.Server{
         Handler:      r,
         Addr:         ":80",

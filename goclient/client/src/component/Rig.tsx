@@ -4,6 +4,8 @@ import Form from 'react-bootstrap/Form';
 import NumericInput from 'react-numeric-input';
 import Container from 'react-bootstrap/Container';
 import Request from './Request'
+import Save from './Save'
+import GetImg from './Img'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
@@ -38,15 +40,12 @@ function Rig() {
 
 	function save () {
 		let json = JSON.stringify(data);
-		const blob = new Blob([json], { type: "application/json" });
-  		const href = URL.createObjectURL(blob);
-		const link = document.createElement("a");
-  		link.href = href;
-  		link.download =	"save.json";
-  		document.body.appendChild(link);
-  		link.click();
-		document.body.removeChild(link);
-		URL.revokeObjectURL(href);
+		Save(json, "application/json", "rig.json")
+	}
+	
+	function getImg() {
+		let e = document.getElementById("riri");
+		GetImg(e)
 	}
 
 	function getRig () {
@@ -88,9 +87,10 @@ return (
 				/>
 				<button onClick={getRig} style={{width:"100%"}}>Get Rig</button>
 				<button onClick={save} style={{width:"100%"}}>Save</button>
+				<button onClick={getImg} >getImg</button>
 			</Col>
 			<Col xs={10}>
-				<Row xs={"auto"}>
+				<Row id="riri" xs={"auto"}>
 				{listData}
 				</Row>
 			</Col>

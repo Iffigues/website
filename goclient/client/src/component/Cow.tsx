@@ -4,10 +4,13 @@ import Form from 'react-bootstrap/Form';
 import NumericInput from 'react-numeric-input';
 import Container from 'react-bootstrap/Container';
 import Request from './Request'
+import Save from './Save'
+import GetImg from './Img'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
-import { Markup } from 'interweave'; 
+import { Markup } from 'interweave';
+ 
 function Cow() {
 	let y = 1;
 	const api = new Request("http://gopiko.fr/");	
@@ -37,15 +40,11 @@ function Cow() {
 	}, []);
 
 	function save () {
-		const blob = new Blob([cow], { type: "plain/text" });
-  		const href = URL.createObjectURL(blob);
-		const link = document.createElement("a");
-  		link.href = href;
-  		link.download =	"save.txt";
-  		document.body.appendChild(link);
-  		link.click();
-		document.body.removeChild(link);
-		URL.revokeObjectURL(href);
+		Save(cow, "plain/text", "cow.txt")
+	}
+	function getImg() {
+		let e = document.getElementById("coco");
+		GetImg(e)
 	}
 
 	function getCow () {
@@ -74,8 +73,13 @@ function Cow() {
 
 	return (
 		<>
-			<div>
-				<pre style={{"textAlign": "initial"}}>{cow}</pre>
+			<div>		
+				<pre id="coco" style={{"textAlign": "initial",
+  						 "display": "inline-flex",
+ 						 "alignItems": "center",
+  						 "justifyContent": "center",
+						}
+						}>{cow}</pre>
 			</div>
 			<Container fluid>
 				<Row>
@@ -98,6 +102,7 @@ function Cow() {
 				<Form.Control type="texte" onChange={(e)=>{setMessage(e.target.value)}}/>
 				<button onClick={getCow}>get Cow</button>
 				<button onClick={save}>Save</button>
+				<button onClick={getImg}>get Image</button>
 			</Container>
 		</>
 	)
