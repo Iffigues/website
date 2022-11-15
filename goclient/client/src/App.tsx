@@ -10,13 +10,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Image from 'react-bootstrap/Image'
 import Dropdown from 'react-bootstrap/Dropdown';
 import './asset/App.css';
-import Fortune from './component/Fortune'
-import Cow from './component/Cow'
-import Rig from './component/Rig'
+import Fortune from './component/linuxtool/game/fortune/Fortune'
+import Cow from './component/linuxtool/game/cow/Cow'
+import Rig from './component/linuxtool/game/rig/Rig'
 import MyComponent from './component/Test'
 import Home from './component/Home'
-import Toilet from './component/Toilet'
-import Figlet from './component/Figlet'
+import Toilet from './component/linuxtool/game/toilet/Toilet'
+import Figlet from './component/linuxtool/game/figlet/Figlet'
 import Navi from './component/Navi'
 import Request from './component/Request'
 

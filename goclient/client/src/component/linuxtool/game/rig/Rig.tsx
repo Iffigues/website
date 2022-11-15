@@ -3,13 +3,13 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import NumericInput from 'react-numeric-input';
 import Container from 'react-bootstrap/Container';
-import Request from './Request'
-import Save from './Save'
-import GetImg from './Img'
+import Request from '../../../Request'
+import Save from '../../../Save'
+import GetImg from '../../../Img'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
-import Effect from './effect/Effect';
+import Effect from '../../../effect/Effect';
 
 function Rig() {
 	let y = 1;
@@ -19,8 +19,8 @@ function Rig() {
 	const [data, setData] =  useState<any[]>([]);
 	const h1Ref = useRef<HTMLHeadingElement>(null);
 
-	const listData =  data.map((n) =>
-			<Col style={{paddingBottom:"2px"}}>
+	const listData =  data.map((n, i) =>
+			<Col style={{paddingBottom:"2px"}} key={i}>
 				<Card style={{ width: '18rem' }}>
 					<Card.Body>
 						<Card.Header>{n.Name}</Card.Header>

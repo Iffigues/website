@@ -3,12 +3,12 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import NumericInput from 'react-numeric-input';
 import Container from 'react-bootstrap/Container';
-import Request from './Request'
-import Save from './Save'
+import Request from '../../../Request'
+import Save from '../../../Save'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Effect from './effect/Effect';
-import GetImg from './Img'
+import Effect from '../../../effect/Effect';
+import GetImg from '../../../Img'
 
 const style = {
 	lineHeight:"initial"
@@ -51,7 +51,7 @@ function Toilet() {
 
 	function SelectFileFortune(values :any, i :number) {
 		return (
-			<>
+			<div key={i}>
 			<Form.Select
 				value={values.Fortune}
         		  	onChange={(e) => {
@@ -61,13 +61,13 @@ function Toilet() {
 			}}
 			>
 			<option>ii</option>
-			{f.map((value :string, index :number) => {return <option value={value}>{value}</option>})}
+			{f.map((value :string, index :number) => {return <option value={value} key={index}>{value}</option>})}
 		</Form.Select>
 		<button onClick={() => {
 			 let newArr = [...checkedPercent];
 			 newArr.splice(i, 1);
 			setCheckedPercent(newArr) 
-		}}>X</button></>
+		}}>X</button></div>
 		);
 	}
 
@@ -82,7 +82,7 @@ function Toilet() {
 				{
 					checkedPercent.map((value :any, index :number) => {
 						return (
-							<div>
+							<div key={index}>
 								{SelectFileFortune(value, index)}
 							</div>
 					)})
@@ -121,15 +121,19 @@ function Toilet() {
 				let s = document.getElementById("mes");
 				let ss = document.getElementById('mos');
 				if (ee == "html3" || ee == "html" || ee == "svg") {
-					if (s) s.style.display='inline-flex';
-					if (ss) ss.style.display='none';
+					if (h2Ref.current)
+						h2Ref.current.style.display = "block"
+					if (h1Ref.current)
+						h1Ref.current.style.display = "none"
 					if (html.current)
 						html.current.style.display = "block"
 					if (nohtml.current)
 						nohtml.current.style.display = "none"
 				} else {
-					if (s) s.style.display='none';
-					if (ss) ss.style.display='inline-flex';
+					if (h2Ref.current)
+						h2Ref.current.style.display = "none"
+					if (h1Ref.current)
+						h1Ref.current.style.display = "block"
 					if (html.current)
 						html.current.style.display = "none"
 					if (nohtml.current)
@@ -152,7 +156,7 @@ function Toilet() {
 		return (
 			<Form.Select value={ffs} onChange={(e) => {setFfs(e.target.value)}}>
 				<option value={""}>ii</option>
-				{ff.map((value :string, index :number) => {return <option value={value}>{value}</option>})}
+				{ff.map((value :string, index :number) => {return <option value={value} key={index}>{value}</option>})}
 			</Form.Select>
 		);
 	}
@@ -161,7 +165,7 @@ function Toilet() {
 		return (
 			<Form.Select value={fff} onChange={(e) => {setFff(e.target.value)}}>
 				<option value={""}>ii</option>
-				{f.map((value :string, index :number) => {return <option value={value}>{value}</option>})}
+				{f.map((value :string, index :number) => {return <option value={value} key={index}>{value}</option>})}
 			</Form.Select>
 		);
 	}
@@ -170,7 +174,7 @@ function Toilet() {
 		return (
 			<Form.Select value={ffff} onChange={(e) => {setFfff(e.target.value)}}>
 				<option value={""}>ii</option>
-				{f.map((value :string, index :number) => {return <option value={value}>{value}</option>})}
+				{f.map((value :string, index :number) => {return <option value={value} key={index}>{value}</option>})}
 			</Form.Select>
 		);
 	}
@@ -179,7 +183,7 @@ function Toilet() {
 		return (
 			<Form.Select value={ee} onChange={(e) => {setEe(e.target.value)}}>
 				<option value={""}>ii</option>
-				{e.map((value :string, index :number) => {return <option value={value}>{value}</option>})}
+				{e.map((value :string, index :number) => {return <option value={value} key={index}>{value}</option>})}
 			</Form.Select>
 		);
 	}	

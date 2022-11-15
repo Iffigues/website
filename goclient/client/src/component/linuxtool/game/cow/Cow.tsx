@@ -3,14 +3,14 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import NumericInput from 'react-numeric-input';
 import Container from 'react-bootstrap/Container';
-import Request from './Request'
-import Save from './Save'
-import GetImg from './Img'
+import Request from '../../../Request'
+import Save from '../../../Save'
+import GetImg from '../../../Img'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import { Markup } from 'interweave';
-import Effect from './effect/Effect';
+import Effect from '../../../effect/Effect';
  
 function Cow() {
 	let y = 1;
@@ -97,7 +97,7 @@ function Cow() {
 				<Col><Form.Check style={{width:"100%"}} onChange={(e)=>{setCheckedY(e.target.checked)}} checked={checkedY} type="switch" /></Col>
 				</Row>
 				<Row>
-				<Col><Form.Select value={beast} onChange={(e) => {setBeast(e.target.value)}}> <option></option> {file.map((value :string, index :number) => {return <option value={value}>{value}</option>})}</Form.Select></Col>
+				<Col><Form.Select value={beast} onChange={(e) => {setBeast(e.target.value)}}> <option></option> {file.map((value :string, index :number) => {return <option value={value} key={index}>{value}</option>})}</Form.Select></Col>
 				<Col><Form.Control type="texte" onChange={(e)=>{setCheckedE(e.target.value)}}/></Col>
 				<Col><Form.Control type="texte" onChange={(e)=>{setCheckedTT(e.target.value)}}/></Col>
 				</Row>

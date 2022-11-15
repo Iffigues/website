@@ -3,12 +3,12 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import NumericInput from 'react-numeric-input';
 import Container from 'react-bootstrap/Container';
-import Request from './Request'
+import Request from '../../../Request'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import GetImg from './Img'
-import Save from './Save'
-import Effect from './effect/Effect';
+import GetImg from '../../../Img'
+import Save from '../../../Save'
+import Effect from '../../../effect/Effect';
 
 interface Percent {
    [key: string]: string;

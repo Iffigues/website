@@ -3,13 +3,13 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import NumericInput from 'react-numeric-input';
 import Container from 'react-bootstrap/Container';
-import Save from './Save'
-import GetImg from './Img'
-import Request from './Request'
+import Save from '../../../Save'
+import GetImg from '../../../Img'
+import Request from '../../../Request'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
-import Effect from './effect/Effect';
+import Effect from '../../../effect/Effect';
 
 function Figlet() {
 	let y = 1;
@@ -42,14 +42,14 @@ function Figlet() {
 	const [checkedFFile, setCheckedFFile] = useState("");
 	const [checkedEFile, setCheckedEFile] = useState("");
 	const api = new Request("http://gopiko.fr/");	
-
+	
 	useEffect(() => {
 		if (y) {
 			getFileFiglet()
 			y = 0;
 		}
 	}, []);
-
+	
 	function getFiglet () {
 		api.Post("/figlet", {
 			R: checkedR, X: checkedX, L: checkedL, RR: checkedRR, XX: checkedXX, LL: checkedLL, C: checkedC, P: checkedP, N: checkedN, O: checkedO,W: checkedW, K: checkedK, S: checkedS, SS: checkedSS, NN: checkedNN, E: checkedE, D: checkedD, T: checkedT, NNN: checkedNNN, Message: message, WW: checkedWW, M: checkedM, F: checkedFFile, CC: checkedEFile
@@ -69,7 +69,7 @@ function Figlet() {
 		return (
 			<Form.Select value={checkedFFile} onChange={(e) => {setCheckedFFile(e.target.value)}}>
 				<option value={""}>ii</option>
-				{fileF.map((value :string, index :number) => {return <option value={value}>{value}</option>})}
+				{fileF.map((value :string, index :number) => {return <option value={value} key={value}>{value}</option>})}
 			</Form.Select>
 		);
 	}
@@ -78,7 +78,7 @@ function Figlet() {
 		return (
 			<Form.Select value={checkedEFile} onChange={(e) => {setCheckedEFile(e.target.value)}}>
 				<option value={""} >ii</option>
-				{fileE.map((value :string, index :number) => {return <option value={value}>{value}</option>})}
+				{fileE.map((value :string, index :number) => {return <option value={value} key={value}>{value}</option>})}
 			</Form.Select>
 		);
 	}
