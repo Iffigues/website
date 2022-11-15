@@ -1,4 +1,4 @@
-import React, { useState, useEffect}  from 'react';
+import React, { useState, useEffect, useRef}  from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import NumericInput from 'react-numeric-input';
@@ -8,12 +8,15 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import GetImg from './Img'
 import Save from './Save'
+import Effect from './effect/Effect';
+
 interface Percent {
    [key: string]: string;
 }
 
 function Fortune() {
 	let y = 1;
+	const h1Ref = useRef<HTMLPreElement>(null);
 	const [f, setF] = useState(false)
 	const [fortune, setFortune] = useState("");
 	const [checkedA, setCheckedA] = useState(false);
@@ -120,6 +123,7 @@ function Fortune() {
 	}
 
 	return (
+		<>
 		<Container fluid>
 			<Row>
 				<Col>
@@ -170,7 +174,7 @@ function Fortune() {
 					<button onClick={getImg}>get Image</button>
 				</Col>
 				<Col xs={10}>
-					<pre id="dd" style={{"textAlign": "initial",
+					<pre ref={h1Ref} id="dd" style={{"textAlign": "initial",
   						 "display": "inline-flex",
  						 "alignItems": "center",
   						 "justifyContent": "center",
@@ -178,6 +182,8 @@ function Fortune() {
 				</Col>
 			</Row>
 		</Container>
+		<Effect h1ref={h1Ref} />
+		</>
 	)
 }
 

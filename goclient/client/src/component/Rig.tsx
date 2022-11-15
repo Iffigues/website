@@ -1,4 +1,4 @@
-import React, { useState, useEffect}  from 'react';
+import React, {useRef,  useState, useEffect}  from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import NumericInput from 'react-numeric-input';
@@ -9,6 +9,7 @@ import GetImg from './Img'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
+import Effect from './effect/Effect';
 
 function Rig() {
 	let y = 1;
@@ -16,7 +17,8 @@ function Rig() {
 	const [checkedMan, setCheckedMan] = useState(false);
 	const [checkedWoman, setCheckedWoman] = useState(false);
 	const [data, setData] =  useState<any[]>([]);
-	
+	const h1Ref = useRef<HTMLHeadingElement>(null);
+
 	const listData =  data.map((n) =>
 			<Col style={{paddingBottom:"2px"}}>
 				<Card style={{ width: '18rem' }}>
@@ -90,7 +92,7 @@ return (
 				<button onClick={getImg} >getImg</button>
 			</Col>
 			<Col xs={10}>
-				<Row id="riri" xs={"auto"}>
+				<Row id="riri" xs={"auto"}  >
 				{listData}
 				</Row>
 			</Col>

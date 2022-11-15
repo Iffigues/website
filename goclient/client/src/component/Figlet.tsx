@@ -1,4 +1,4 @@
-import React, { useState, useEffect}  from 'react';
+import React, { useState, useEffect, useRef}  from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import NumericInput from 'react-numeric-input';
@@ -9,13 +9,14 @@ import Request from './Request'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
+import Effect from './effect/Effect';
 
 function Figlet() {
 	let y = 1;
 	const [figlet, setFiglet] = useState<string>("");
 	const [fileF, setFileF] = useState<string[]>([]);
 	const [fileE, setFileE] = useState<string[]>([]);	
-	
+	const h1Ref = useRef<HTMLPreElement>(null);	
 	const [checkedR, setCheckedR] = useState(false);
 	const [checkedX, setCheckedX] = useState(false);
 	const [checkedL, setCheckedL] = useState(false);
@@ -92,7 +93,7 @@ function Figlet() {
 
 	return (
 		<>
-			<pre id="fig" style={{
+			<pre ref={h1Ref} id="fig" style={{
   						 "display": "inline-flex",
  						 "alignItems": "center",
   						 "justifyContent": "center",
@@ -128,6 +129,7 @@ function Figlet() {
 			<button onClick={()=>{getFiglet()}}>ok</button>
 			<button onClick={save} >Save</button>
 			<button onClick={getImg}>get Image</button>
+			<Effect h1ref={h1Ref} />
 		</>
 	)
 }

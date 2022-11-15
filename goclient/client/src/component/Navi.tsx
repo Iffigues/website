@@ -26,13 +26,9 @@ return (
   <Container fluid>
     <Navbar.Toggle aria-controls="navbarScroll" />
     <Navbar.Collapse id="navbarScroll">
-      <Nav
-        className="me-auto my-2 my-lg-0"
-        style={{ maxHeight: '100px' }}
-        navbarScroll
-      >
         <Nav.Link href="/"><Image src={ReactLogo} alt="React Logo" fluid/></Nav.Link>
-        <Lin />
+      <Nav>
+	  <Lin />
       </Nav>
     </Navbar.Collapse>
   </Container>

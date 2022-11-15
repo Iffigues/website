@@ -1,4 +1,4 @@
-import React, { useState, useEffect}  from 'react';
+import React, {useRef, useState, useEffect}  from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import NumericInput from 'react-numeric-input';
@@ -7,13 +7,19 @@ import Request from './Request'
 import Save from './Save'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Effect from './effect/Effect';
 import GetImg from './Img'
+
 const style = {
 	lineHeight:"initial"
 }
 
 function Toilet() {
 	let y = 1;
+	const h2Ref = useRef<HTMLDivElement>(null);
+	const h1Ref = useRef<HTMLPreElement>(null);
+	const nohtml = useRef<HTMLDivElement>(null);
+	const html = useRef<HTMLDivElement>(null);
 	const api = new Request("http://gopiko.fr/");
 	const [toilet, setToilet] = useState("");
 	const [f,setF] = useState<string[]>([]);
@@ -34,6 +40,14 @@ function Toilet() {
 	const [checkedPercent, setCheckedPercent] = useState<any[]>([],);	
 	const d = React.useRef<HTMLDivElement>(null);
 	const dd = React.useRef<HTMLDivElement>(null);
+
+
+	useEffect(() => {
+		if (html.current)
+			html.current.style.display = "none";
+		if (nohtml.current)
+			nohtml.current.style.display = "none";
+	}, [])
 
 	function SelectFileFortune(values :any, i :number) {
 		return (
@@ -109,9 +123,17 @@ function Toilet() {
 				if (ee == "html3" || ee == "html" || ee == "svg") {
 					if (s) s.style.display='inline-flex';
 					if (ss) ss.style.display='none';
+					if (html.current)
+						html.current.style.display = "block"
+					if (nohtml.current)
+						nohtml.current.style.display = "none"
 				} else {
 					if (s) s.style.display='none';
 					if (ss) ss.style.display='inline-flex';
+					if (html.current)
+						html.current.style.display = "none"
+					if (nohtml.current)
+						nohtml.current.style.display = "block"
 				}
 			}
 		});		
@@ -165,7 +187,7 @@ function Toilet() {
 	return (
 		<div>
 			<div>
-				<div id="mes"  style={
+				<div id="mes" ref={h2Ref}  style={
 					{
   						 "display": "inline-flex",
  						 "alignItems": "center",
@@ -178,7 +200,7 @@ function Toilet() {
  						 "alignItems": "center",
   						 "justifyContent": "center",
 					}
-				}><pre id="mos">{l}</pre></div>
+				}><pre ref={h1Ref} id="mos">{l}</pre></div>
 			</div>
 			<Row>
 				<Col><Form.Check type={"checkbox"} onChange={(e)=>{setS(e.target.checked)}} checked={s} /></Col>
@@ -204,6 +226,8 @@ function Toilet() {
 				<button onClick={save}>Save</button>
 				<button onClick={getImg}>get Image</button>
 			</div>
+			<div ref={nohtml}><Effect h1ref={h1Ref} /></div>
+			<div ref={html}><Effect h1ref={h2Ref} /></div>
 		</div>
 	)
 }

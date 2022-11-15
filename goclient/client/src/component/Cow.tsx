@@ -1,4 +1,4 @@
-import React, { useState, useEffect}  from 'react';
+import React, {useRef, useState, useEffect}  from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import NumericInput from 'react-numeric-input';
@@ -10,9 +10,11 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import { Markup } from 'interweave';
+import Effect from './effect/Effect';
  
 function Cow() {
 	let y = 1;
+	const h1Ref = useRef<HTMLPreElement>(null);
 	const api = new Request("http://gopiko.fr/");	
 	const [file, setFile] = useState<string[]>([]);
 	const [beast, setBeast] = useState("");
@@ -74,7 +76,7 @@ function Cow() {
 	return (
 		<>
 			<div>		
-				<pre id="coco" style={{"textAlign": "initial",
+				<pre id="coco" ref={h1Ref}  style={{"textAlign": "initial",
   						 "display": "inline-flex",
  						 "alignItems": "center",
   						 "justifyContent": "center",
@@ -104,6 +106,7 @@ function Cow() {
 				<button onClick={save}>Save</button>
 				<button onClick={getImg}>get Image</button>
 			</Container>
+			<Effect h1ref={h1Ref} />
 		</>
 	)
 }
