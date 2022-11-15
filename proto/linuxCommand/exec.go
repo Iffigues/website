@@ -18,7 +18,7 @@ func logs(Command string, opt []string) {
 	}
 	defer f.Close()
 	ar := append([]string{Command}, opt...)
-	tt := strings.Join(ar[:], ",")
+	tt := strings.Join(ar[:], " ")
 	tt = tt + "\n"
 	f.WriteString(tt)
 
