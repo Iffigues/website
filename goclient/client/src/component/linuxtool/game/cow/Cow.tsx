@@ -66,7 +66,7 @@ function Cow() {
 			Message: message,
 		}).then((resp: any) => {
 			if(resp.data && resp.data.StdoutResponse) setCow(resp.data.StdoutResponse)
-		});
+		}).catch(function (error :any) {});
 	};
 	
 	function getCowFile() {

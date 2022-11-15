@@ -21,7 +21,7 @@ function Rig() {
 
 	const listData =  data.map((n, i) =>
 			<Col style={{paddingBottom:"2px"}} key={i}>
-				<Card style={{ width: '18rem' }}>
+				<Card style={{ width: '18rem'}}>
 					<Card.Body>
 						<Card.Header>{n.Name}</Card.Header>
 						<Card.Text>{n.Addr}</Card.Text>
@@ -58,7 +58,7 @@ function Rig() {
 		}).then((resp: any) => {
 			console.log(resp.data)
     			if (resp.data) setData(resp.data)
-		});		
+		}).catch(function (error :any) {});		
 	};
 
 return (

@@ -69,7 +69,7 @@ function Fortune() {
 			
 		}).then((resp: any) => {
 			if (resp.data && resp.data.StdoutResponse) setFortune(resp.data.StdoutResponse)
-		});
+		}).catch(function (error :any) {});
 	};
 
 	function SelectFileFortune(values :any, i :number) {

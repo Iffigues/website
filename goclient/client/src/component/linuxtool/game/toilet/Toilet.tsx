@@ -139,9 +139,8 @@ function Toilet() {
 					if (nohtml.current)
 						nohtml.current.style.display = "block"
 				}
-			}
-		});		
-	};
+			}}).catch(function (error :any) {}) 	
+		};
 
 	function getImg() {
 		let y = "mos";

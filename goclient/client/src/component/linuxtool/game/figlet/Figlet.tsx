@@ -55,7 +55,7 @@ function Figlet() {
 			R: checkedR, X: checkedX, L: checkedL, RR: checkedRR, XX: checkedXX, LL: checkedLL, C: checkedC, P: checkedP, N: checkedN, O: checkedO,W: checkedW, K: checkedK, S: checkedS, SS: checkedSS, NN: checkedNN, E: checkedE, D: checkedD, T: checkedT, NNN: checkedNNN, Message: message, WW: checkedWW, M: checkedM, F: checkedFFile, CC: checkedEFile
 		}).then((resp: any) => {
 			if (resp.data && resp.data.StdoutResponse) setFiglet(resp.data.StdoutResponse)
-		});
+		}).catch(function (error :any) {});
 	};
 
 	function getFileFiglet() {
