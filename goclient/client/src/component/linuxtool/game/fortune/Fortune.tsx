@@ -15,7 +15,7 @@ interface Percent {
 }
 
 function Fortune() {
-	let y = 1;
+	const [y, setY] = useState(1);
 	const h1Ref = useRef<HTMLPreElement>(null);
 	const [f, setF] = useState(false)
 	const [fortune, setFortune] = useState("");
@@ -39,7 +39,7 @@ function Fortune() {
   			getFortune();
 			getFileFortune();
 		}
-		y = 0;
+		setY(0);
 	}, []);
 
 	function addPercent() {

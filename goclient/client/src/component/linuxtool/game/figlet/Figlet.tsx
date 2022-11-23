@@ -12,7 +12,7 @@ import Card from 'react-bootstrap/Card';
 import Effect from '../../../effect/Effect';
 
 function Figlet() {
-	let y = 1;
+	const [y, setY] = useState(1);
 	const [figlet, setFiglet] = useState<string>("");
 	const [fileF, setFileF] = useState<string[]>([]);
 	const [fileE, setFileE] = useState<string[]>([]);	
@@ -44,10 +44,8 @@ function Figlet() {
 	const api = new Request("http://gopiko.fr/");	
 	
 	useEffect(() => {
-		if (y) {
-			getFileFiglet()
-			y = 0;
-		}
+		if (y) getFileFiglet()
+		setY(0);
 	}, []);
 	
 	function getFiglet () {

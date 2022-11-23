@@ -1,24 +1,18 @@
-import React, { useState, useRef, useLayoutEffect, useEffect}  from 'react';
-import logo from './logo.svg';
+import React  from 'react';
 import {
   BrowserRouter,
   Routes,
   Route,
 } from "react-router-dom";
-import { Navbar, Container, Nav, Form, FormControl,Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Image from 'react-bootstrap/Image'
-import Dropdown from 'react-bootstrap/Dropdown';
 import './asset/App.css';
 import Fortune from './component/linuxtool/game/fortune/Fortune'
 import Cow from './component/linuxtool/game/cow/Cow'
 import Rig from './component/linuxtool/game/rig/Rig'
-import MyComponent from './component/Test'
 import Home from './component/Home'
 import Toilet from './component/linuxtool/game/toilet/Toilet'
 import Figlet from './component/linuxtool/game/figlet/Figlet'
 import Navi from './component/Navi'
-import Request from './component/Request'
 
 function App() {
 	return (

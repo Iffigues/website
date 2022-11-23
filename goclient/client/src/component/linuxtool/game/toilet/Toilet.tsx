@@ -10,12 +10,8 @@ import Col from 'react-bootstrap/Col';
 import Effect from '../../../effect/Effect';
 import GetImg from '../../../Img'
 
-const style = {
-	lineHeight:"initial"
-}
-
 function Toilet() {
-	let y = 1;
+	const [y, setY] = useState(1);
 	const h2Ref = useRef<HTMLDivElement>(null);
 	const h1Ref = useRef<HTMLPreElement>(null);
 	const nohtml = useRef<HTMLDivElement>(null);
@@ -93,10 +89,8 @@ function Toilet() {
 
 
 	useEffect(() => {
-		if (y) {
-  			getFileToilet();
-			y = 0;
-		}
+		if (y) getFileToilet();
+		setY(0);
 	}, []);
 
 	function getFileToilet() {

@@ -12,7 +12,7 @@ import Card from 'react-bootstrap/Card';
 import Effect from '../../../effect/Effect';
 
 function Rig() {
-	let y = 1;
+	const [y, setY] = useState(1);
 	const [nbrRig, setNbrRig] = useState(1);
 	const [checkedMan, setCheckedMan] = useState(false);
 	const [checkedWoman, setCheckedWoman] = useState(false);
@@ -37,7 +37,7 @@ function Rig() {
 	useEffect(() => {
 		if (y)
   			getRig();
-		y = 0;
+		setY(0);
 	}, []);
 
 	function save () {

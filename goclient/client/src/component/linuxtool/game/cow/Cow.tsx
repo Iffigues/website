@@ -13,7 +13,7 @@ import { Markup } from 'interweave';
 import Effect from '../../../effect/Effect';
  
 function Cow() {
-	let y = 1;
+	const [y, setY] = useState(1);
 	const h1Ref = useRef<HTMLPreElement>(null);
 	const api = new Request("http://gopiko.fr/");	
 	const [file, setFile] = useState<string[]>([]);
@@ -38,7 +38,7 @@ function Cow() {
 			getCow()
 			getCowFile();
 		}
-		y = 0;
+		setY(0);
 	}, []);
 
 	function save () {
