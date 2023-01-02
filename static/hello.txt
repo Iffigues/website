@@ -1,0 +1,5 @@
+//go:embed hello.txt
+var s string
+print(s)//go:embed hello.txt
+var s string
+print(s)
