@@ -6,4 +6,5 @@ type Server struct {
 	UnimplementedCowServiceServer
 	UnimplementedFigletServiceServer
 	UnimplementedToiletServiceServer
+	UnimplementedXkcdpassServiceServer
 }
