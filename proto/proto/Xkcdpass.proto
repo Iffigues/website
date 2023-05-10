@@ -8,7 +8,7 @@ message Xkcdpass {
 	string Min = 2;
 	string Max = 3;
 	string Numwords = 4;
-	string Valid_chars = 5;
+	string ValidChars = 5;
 	string Acrostic = 6;
 	string count = 7;
 	string Delimiter = 8;

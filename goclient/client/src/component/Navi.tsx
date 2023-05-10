@@ -22,17 +22,17 @@ const Lin = React.forwardRef((props, ref: React.Ref<HTMLDivElement>) => (
 function Navi() {
 return (
 	
-<Navbar bg="light" expand="lg">
-  <Container fluid>
-    <Navbar.Toggle aria-controls="navbarScroll" />
-    <Navbar.Collapse id="navbarScroll">
-        <Nav.Link href="/"><Image src={ReactLogo} alt="React Logo" fluid/></Nav.Link>
-      <Nav>
-	  <Lin />
-      </Nav>
-    </Navbar.Collapse>
-  </Container>
-</Navbar>
+	<Navbar bg="light" expand="lg">
+		<Container fluid>
+			<Navbar.Toggle aria-controls="navbarScroll" />
+			<Navbar.Collapse id="navbarScroll">
+       				<Nav.Link href="/"><Image src={ReactLogo} alt="React Logo" fluid/></Nav.Link>
+			</Navbar.Collapse>
+			<Navbar.Collapse>
+     				<Lin />
+    			</Navbar.Collapse>
+  		</Container>
+	</Navbar>
   );
 }
 

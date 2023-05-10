@@ -4,26 +4,26 @@ import (
 	"golang.org/x/net/context"
 )
 
-func (s *Server) GetCow(ctx context.Context, in *Xkcdpass)(*Responses, error) {
+func (s *Server) GetXkcdpass(ctx context.Context, in *Xkcdpass)(*Responses, error) {
 	var t []string
 	com := "xkcdpass"
 
-	if in.verbose {
+	if in.Verbose {
 		t = append(t, "-V")
 	}
 	if in.Min != "" {
 		t = addOptTab(t, "---min", in.Min)
 	}
-	
+
 	if in.Max != "" {
 		t = addOptTab(t, "--Max", in.Max)
 	}
 	if in.Numwords != "" {
-		t = addOptTab(t, "--numwords", in.--Numwords);
+		t = addOptTab(t, "--numwords", in.Numwords)
 	}
 
-	if in.Valid_chars != "" {
-		t = addOptTab(t, "-v", in.Valid_chars)
+	if in.ValidChars != "" {
+		t = addOptTab(t, "-v", in.ValidChars)
 	}
 
 	if in.Acrostic != "" {
@@ -43,7 +43,7 @@ func (s *Server) GetCow(ctx context.Context, in *Xkcdpass)(*Responses, error) {
 	}
 
 	if in.Case != "" {
-		t = addOptTab(t, "-C", in.C)
+		t = addOptTab(t, "-C", in.Case)
 	}
 
 	return startExec(com, t)

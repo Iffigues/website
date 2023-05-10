@@ -19,6 +19,7 @@ services:
       - "80:80"
     networks:
         - back-tier
+    restart: always
   server:
     build: ./server
     ports:
@@ -27,6 +28,7 @@ services:
         - back-tier
     volumes:
       - ./log:/log
+    restart: always
   gateway:
     build: ./gateway
     ports:
@@ -35,6 +37,7 @@ services:
         - back-tier
     volumes:
       - ./log:/log
+    restart: always
   grafana:
     image: grafana/grafana
     container_name: grafana
@@ -50,6 +53,8 @@ services:
     networks:
       - back-tier
       - front-tier
+
+    restart: always
   wordpress:
     image: wordpress
     restart: always
@@ -62,7 +67,7 @@ services:
       WORDPRESS_DB_NAME: exampledb
     volumes:
       - wordpress:/var/www/html
-
+    restart: always
   db:
     image: mysql:5.7
     restart: always
@@ -73,4 +78,4 @@ services:
       MYSQL_RANDOM_ROOT_PASSWORD: '1'
     volumes:
       - db:/var/lib/mysql
-
+    restart: always

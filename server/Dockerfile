@@ -12,7 +12,7 @@ RUN apt install -y figlet
 RUN apt install -y cowsay
 RUN apt install -y toilet
 RUN apt install -y rig
-
+RUN apt install -y xkcdpass
 RUN apt install -y protobuf-compiler
 RUN apt install -y golang-goprotobuf-dev
 RUN go install google.golang.org/protobuf/cmd/protoc-gen-go@latest

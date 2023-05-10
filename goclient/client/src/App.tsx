@@ -18,7 +18,7 @@ function App() {
 	return (
 	<div className="App">
 		<Navi />
-			<div style={{minHeight: "100"}}>
+			<div>
 	    			<BrowserRouter>
 					<Routes>
 						<Route path="/" 	element={<Home />}	/>
