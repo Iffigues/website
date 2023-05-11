@@ -202,3 +202,5 @@ xkcdpass
 xkcdpass ---min 2
 xkcdpass ---min 2
 xkcdpass ---min 2
+fortune
+xkcdpass -V ---min 1 --Max 3 --numwords 2
