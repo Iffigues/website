@@ -12,6 +12,7 @@ import Rig from './component/linuxtool/game/rig/Rig'
 import Home from './component/Home'
 import Toilet from './component/linuxtool/game/toilet/Toilet'
 import Figlet from './component/linuxtool/game/figlet/Figlet'
+import Xkcdpass from './component/linuxtool/game/xkcdpass/Xkcdpass'
 import Navi from './component/Navi'
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
 						<Route path="/cow" 	element={<Cow />} 	/>
 						<Route path="/figlet" 	element={<Figlet />} 	/>
 						<Route path="/toilet" 	element={<Toilet />} 	/>
+						<Route path="/xkcdpass" element={<Xkcdpass />}	/>
 					</Routes>
 				</BrowserRouter>
 			</div>

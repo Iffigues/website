@@ -25,6 +25,7 @@ func main() {
 	"/cow",
 	"/figlet",
 	"/toilet",
+	"/xkcdpass",
     }
 
     for _, val := range url {

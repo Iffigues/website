@@ -12,11 +12,11 @@ func (s *Server) GetXkcdpass(ctx context.Context, in *Xkcdpass)(*Responses, erro
 		t = append(t, "-V")
 	}
 	if in.Min != "" {
-		t = addOptTab(t, "---min", in.Min)
+		t = addOptTab(t, "--min", in.Min)
 	}
 
 	if in.Max != "" {
-		t = addOptTab(t, "--Max", in.Max)
+		t = addOptTab(t, "--max", in.Max)
 	}
 	if in.Numwords != "" {
 		t = addOptTab(t, "--numwords", in.Numwords)

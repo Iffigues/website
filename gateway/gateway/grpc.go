@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 	chat "github.com/Iffigues/website/proto/linuxCommand"
@@ -17,6 +18,17 @@ func rigGrpc(a chat.Rig) (response *chat.Responses, err error) {
 	return c.GetRig(context.Background(), &a)
 }
 
+func xkcdpassGrpc(a chat.Xkcdpass) (response *chat.Responses, err error) {
+	var conn *grpc.ClientConn
+	conn, errs := grpc.Dial("gopiko.fr:9000", grpc.WithInsecure())
+	if errs != nil {
+		return nil, errs
+	}
+	defer conn.Close()
+	c := chat.NewXkcdpassServiceClient(conn)
+	fmt.Println(a)
+	return c.GetXkcdpass(context.Background(), &a)
+}
 
 func fortuneGrpc(a chat.Fortune) (response *chat.Responses, err error) {
 	var conn *grpc.ClientConn

@@ -34,10 +34,11 @@ func main() {
 		Url{"/figlet", handleFiglet, []string{"POST"}},
 		Url{"/toiletfile", handleToiletFile, []string{"POST"}},
 		Url{"/toilet", handleToilet, []string{"POST"}},
+		Url{"/xkcdpass", handleXkcdpass, []string{"POST"}},
 	}
 
 	for _, val := range url {
-		endpoint := router.HandleFunc(val.Url, val.Handle).Methods("POST")
+		endpoint := router.HandleFunc(val.Url, val.Handle)
 		for _, method := range val.Method {
 			endpoint.Methods(method)
 		}
