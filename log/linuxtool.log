@@ -204,3 +204,80 @@ xkcdpass ---min 2
 xkcdpass ---min 2
 fortune
 xkcdpass -V ---min 1 --Max 3 --numwords 2
+fortune
+fortune
+fortune
+xkcdpass
+xkcdpass
+xkcdpass
+xkcdpass
+xkcdpass
+xkcdpass
+xkcdpass
+xkcdpass
+xkcdpass
+xkcdpass
+xkcdpass
+xkcdpass
+xkcdpass
+xkcdpass
+xkcdpass
+xkcdpass
+xkcdpass --min 1
+xkcdpass --min 1
+xkcdpass --min 1
+xkcdpass --min 1
+xkcdpass --min 1
+xkcdpass --min 1 --max 2
+xkcdpass --min 1 --max 2
+xkcdpass --min 1 --max 2
+xkcdpass --min 1 --max 2
+xkcdpass --min 1 --max 2
+xkcdpass --min 1 --max 2
+xkcdpass --min 1 --max 3
+xkcdpass --min 1 --max 3
+xkcdpass --min 1 --max 3
+xkcdpass --min 1 --max 3 --numwords 1
+xkcdpass --min 1 --max 3 --numwords 1
+xkcdpass --min 1 --max 3 --numwords 1
+xkcdpass --min 1 --max 3 --numwords 1
+xkcdpass --min 1 --max 3 --numwords 1000
+xkcdpass --min 1 --max 3 --numwords 10000
+xkcdpass --min 1 --max 3 --numwords 100000
+fortune
+fortune
+fortune
+fortune
+fortune
+fortune
+fortune
+fortune
+xkcdpass
+xkcdpass
+xkcdpass
+xkcdpass
+xkcdpass
+xkcdpass
+xkcdpass
+xkcdpass
+xkcdpass
+xkcdpass
+xkcdpass
+fortune
+rig -c 1
+rig -c 1
+rig -c 1
+rig -c 1000000000000
+rig -c 11
+rig -c 11
+rig -c 1
+rig -c 1
+rig -c 1000000000000
+rig -c 1
+fortune -n 1
+fortune -f
+rig -c 1
+figlist
+figlet hello
+fortune -n 1
+fortune -f

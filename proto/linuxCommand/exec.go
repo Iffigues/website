@@ -1,57 +1,50 @@
 package linuxCommand
 
-
 import (
-	"strings"
 	"bytes"
 	"os/exec"
-	"time"
-	"os"
+	"context"
 )
 
-func logs(Command string, opt []string) {
-
-	f, err := os.OpenFile("/log/linuxtool.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
-
-	if err != nil {
-		return
+func NewCmd(command string, arg []string) (c *Command, err error) {
+	c =  &Command{
+		command: command,
+		args: arg,
 	}
-	defer f.Close()
-	ar := append([]string{Command}, opt...)
-	tt := strings.Join(ar[:], " ")
-	tt = tt + "\n"
-	f.WriteString(tt)
-
+	c.path, err = exec.LookPath(command)
+	if err != nil {
+		return nil, err
+	}
+	return c, nil
 }
 
-func Exec(Command string, opt []string) (out, er bytes.Buffer, err error) {
-	logs(Command, opt)
-	path, errs := exec.LookPath(Command)
-	if errs != nil {
-		err = errs
-		return
-	}
-	cmd := exec.Command(path, opt...)
-	cmd.Stdout = &out
-	cmd.Stderr  = &er
+func (c *Command) Command(ctx context.Context) (cmd *exec.Cmd) {
+	cmd = exec.CommandContext(ctx, c.path, c.args...)
+	cmd.Stdout = &c.out
+	cmd.Stderr = &c.err
+	return cmd
+}
+
+func (c *Command)Exec(ctx context.Context) (out, er bytes.Buffer, err error) {
+	cmd := c.Command(ctx)
 	err = cmd.Start()
 	if err != nil {
-		return out, er, err
+		return c.out, c.err, err
 	}
 	done := make(chan error, 1)
 	go func() {
 	    done <- cmd.Wait()
 	}()
 	select {
-	case <-time.After(60 * time.Second):
+	case <-ctx.Done():
 		if errs := cmd.Process.Kill(); errs != nil {
-			return out, er, errs
+			return c.out, c.err, errs
 		}
 		return
 	case erro := <-done:
 		if erro != nil {
-			return out, er, erro
+			return c.out, c.err, erro
 		}
 	}
-	return
+	return c.out, c.err, err
 }

@@ -1,5 +1,9 @@
 package linuxCommand
 
+import (
+	"context"
+	"time"
+)
 
 func addOptTab(r []string, e ...string) (b []string) {
 	for _, val := range e {
@@ -10,9 +14,16 @@ func addOptTab(r []string, e ...string) (b []string) {
 
 func startExec(a string, t []string) (e *Responses, err error) {
 	e = new(Responses)
-	stdout, stderr, erro := Exec(a, t)
-	if erro != nil {
-		return nil, erro
+	ctx := context.Background()
+	ctx, cancel := context.WithTimeout(ctx, time.Second * 60)
+	defer cancel()
+	c, err := NewCmd(a, t)
+	if err != nil {
+		return nil, err
+	}
+	stdout, stderr, err := c.Exec(ctx)
+	if err != nil {
+		return nil, err
 	}
 	e.StdoutResponse, e.StderrResponse = stdout.String(), stderr.String()
 	return e, nil
