@@ -11,6 +11,7 @@ type Server struct {
 	UnimplementedFigletServiceServer
 	UnimplementedToiletServiceServer
 	UnimplementedXkcdpassServiceServer
+	UnimplementedBannerServiceServer
 }
 
 type Command struct {

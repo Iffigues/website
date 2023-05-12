@@ -1,0 +1,13 @@
+syntax = "proto3";
+package linuxCommand;
+import "proto/Response.proto";
+option go_package = ".;linuxCommand";
+
+message Banner {
+	repeated string Message = 1;
+}
+
+service BannerService {
+  rpc GetBanner(Banner) returns (Responses) {}
+}
+

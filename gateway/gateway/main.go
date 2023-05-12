@@ -35,6 +35,7 @@ func main() {
 		Url{"/toiletfile", handleToiletFile, []string{"POST"}},
 		Url{"/toilet", handleToilet, []string{"POST"}},
 		Url{"/xkcdpass", handleXkcdpass, []string{"POST"}},
+		Url{"/banner", handleBanner, []string{"POST"}},
 	}
 
 	for _, val := range url {

@@ -15,6 +15,7 @@ const Lin = React.forwardRef((props, ref: React.Ref<HTMLDivElement>) => (
 			<Dropdown.Item href="/figlet">Figlet</Dropdown.Item>
 			<Dropdown.Item href="/cow">Cow</Dropdown.Item>
 			<Dropdown.Item href="/xkcdpass">Xkcdpass</Dropdown.Item>
+			<Dropdown.Item href="/banner">Banner</Dropdown.Item>
 		</Dropdown.Menu>
 	</Dropdown>
 ));
