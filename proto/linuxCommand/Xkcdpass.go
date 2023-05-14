@@ -8,43 +8,15 @@ func (s *Server) GetXkcdpass(ctx context.Context, in *Xkcdpass)(*Responses, erro
 	var t []string
 	com := "xkcdpass"
 
-	if in.Verbose {
-		t = append(t, "-V")
-	}
-	if in.Min != "" {
-		t = addOptTab(t, "--min", in.Min)
-	}
-
-	if in.Max != "" {
-		t = addOptTab(t, "--max", in.Max)
-	}
-	if in.Numwords != "" {
-		t = addOptTab(t, "--numwords", in.Numwords)
-	}
-
-	if in.ValidChars != "" {
-		t = addOptTab(t, "-v", in.ValidChars)
-	}
-
-	if in.Acrostic != "" {
-		t = addOptTab(t, "-a", in.Acrostic)
-	}
-
-	if in.Count != "" {
-		t = addOptTab(t, "-c", in.Count)
-	}
-
-	if in.Delimiter != "" {
-		t = addOptTab(t, "-d", in.Delimiter)
-	}
-
-	if in.Separator != "" {
-		t = addOptTab(t, "-s", in.Separator)
-	}
-
-	if in.Case != "" {
-		t = addOptTab(t, "-C", in.Case)
-	}
-
+	t = addBoolOptTable(t, in.Verbose, "-V")
+	t = addStringOptTable(t, in.Min, "--min", in.Min)
+	t = addStringOptTable(t, in.Max, "--max", in.Max)
+	t = addStringOptTable(t, in.Numwords, "-numwords", in.Numwords)
+	t = addStringOptTable(t, in.ValidChars, "-v", in.ValidChars)
+	t = addStringOptTable(t, in.Acrostic, "-a", in.Acrostic)
+	t = addStringOptTable(t, in.Count, "-c", in.Count)
+	t = addStringOptTable(t, in.Delimiter, "-d", in.Delimiter)
+	t = addStringOptTable(t, in.Separator, "-s", in.Separator)
+	t = addStringOptTable(t, in.Case, "-C", in.Case)
 	return startExec(com, t)
 }

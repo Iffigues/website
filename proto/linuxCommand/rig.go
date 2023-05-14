@@ -7,14 +7,8 @@ import (
 func (s *Server) GetRig(ctx context.Context, in *Rig) (*Responses, error) {
 	var t []string
 
-	if in.Man {
-		t = append(t, "-m")
-	}
-	if in.Woman {
-		t = append(t, "-f")
-	}
-	if in.Nbr != "" {
-		t = addOptTab(t, "-c", in.Nbr)
-	}
+	t = addBoolOptTable(t, in.Man, "-m")
+	t = addBoolOptTable(t, in.Woman, "-f")
+	t = addStringOptTable(t, in.Nbr, "-c", in.Nbr)
 	return startExec("rig", t)
 }

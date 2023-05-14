@@ -22,6 +22,7 @@ func bannerGrpc(a chat.Banner) (response *chat.Responses, err error) {
 	var conn *grpc.ClientConn
 	conn, errs := grpc.Dial("gopiko.fr:9000", grpc.WithInsecure())
 	if errs != nil {
+		println("ici")
 		return nil, errs
 	}
 	defer conn.Close()

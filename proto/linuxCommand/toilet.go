@@ -18,39 +18,19 @@ func (s *Server) GetToiletFFFile(ctx context.Context, in *Empty) (*Responses, er
 
 func (s *Server) GetToilet(ctx context.Context, in *Toilet) (*Responses, error) {
 	var t []string
-	if in.S {
-		t = append(t, "-S")
-	}
-	if in.SS {
-		t = append(t, "-s")
-	}
-	if in.K {
-		t = append(t, "-k")
-	}
-	if in.W {
-		t = append(t, "-W")
-	}
-	if in.O {
-		t = append(t, "-o")
-	}
-	if in.F != "" {
-		t = addOptTab(t, "-f", in.F)
-	}
 
-	if in.FF != "" {
-		t = addOptTab(t, "-F", in.FF)
-	}
-
-	if in.FFF != "" {
-		t = addOptTab(t, "-F", in.FFF)
-	}
-
-	if in.E != "" {
-		t = addOptTab(t, "-E", in.E)
-	}
+	t = addBoolOptTable(t, in.S, "-S")
+	t = addBoolOptTable(t, in.SS, "-s")
+	t = addBoolOptTable(t, in.K, "-k")
+	t = addBoolOptTable(t, in.W, "-W")
+	t = addBoolOptTable(t, in.O, "-o")
+	t = addStringOptTable(t, in.F, "-f", in.F)
+	t = addStringOptTable(t, in.FF, "-F", in.FF)
+	t = addStringOptTable(t, in.FFF, "-F", in.FFF)
+	t = addStringOptTable(t, in.E, "-E", in.E)
 
 	for _, val := range in.F3 {
-		t = addOptTab(t, "-F", val)
+		t = addOptTable(t, "-F", val)
 	}
 
 	if in.Message != "" {

@@ -10,29 +10,30 @@ func (s *Server) GetFigletFile(ctx context.Context, in *Empty)(*Responses, error
 
 func (s *Server) GetFiglet(ctx context.Context, in *Figlet) (*Responses, error) {
 	var t []string
-	if in.R {t = append(t, "-r")}
-	if in.X {t = append(t, "-x")}
-	if in.L {t = append(t, "-L")}
-	if in.RR {t = append(t, "-R")}
-	if in.XX {t = append(t, "-X")}
-	if in.LL {t = append(t, "-l")}
-	if in.C {t = append(t, "-c")}
-	if in.P {t = append(t, "-P")}
-	if in.N {t = append(t, "-n")}
-	if in.O {t = append(t, "-o")}
-	if in.W {t = append(t, "-W")}
-	if in.K {t = append(t, "-k")}
-	if in.S {t = append(t, "-S")}
-	if in.SS {t = append(t, "-s")}
-	if in.NN {t = append(t, "-N")}
-	if in.E {t = append(t, "-E")}
-	if in.D {t = append(t, "-D")}
-	if in.T {t = append(t, "-T")}
-	if in.NNN {t = append(t, "-N")}
-	if in.WW != "" {t = addOptTab(t, "-w", in.WW);}
-	if in.M != "" {t = addOptTab(t, "-m", in.M);}
-	if in.F != "" {t = addOptTab(t, "-f", in.F);}
-	if in.CC != "" {t = addOptTab(t, "-C", in.CC);}
-	if in.Message != "" {t = addOptTab(t, in.Message);}
+
+	t = addBoolOptTable(t, in.R, "-r")
+	t = addBoolOptTable(t, in.X, "-x")
+	t = addBoolOptTable(t, in.L, "-L")
+	t = addBoolOptTable(t, in.RR, "-R")
+	t = addBoolOptTable(t, in.XX, "-X")
+	t = addBoolOptTable(t, in.LL, "-l")
+	t = addBoolOptTable(t, in.C, "-c")
+	t = addBoolOptTable(t, in.P, "-P")
+	t = addBoolOptTable(t, in.N, "-n")
+	t = addBoolOptTable(t, in.O, "-o")
+	t = addBoolOptTable(t, in.W, "-W")
+	t = addBoolOptTable(t, in.K, "-k")
+	t = addBoolOptTable(t, in.S, "-S")
+	t = addBoolOptTable(t, in.SS, "-s")
+	t = addBoolOptTable(t, in.NN, "-N")
+	t = addBoolOptTable(t, in.E, "-E")
+	t = addBoolOptTable(t, in.D, "-D")
+	t = addBoolOptTable(t, in.T, "-T")
+	t = addBoolOptTable(t, in.NNN, "-N")
+	t = addStringOptTable(t, in.WW, "-w", in.WW)
+	t = addStringOptTable(t, in.M, "-m", in.M)
+	t = addStringOptTable(t, in.F, "-f", in.F)
+	t = addStringOptTable(t, in.CC, "-C", in.CC)
+	t = addStringOptTable(t, in.Message, in.Message)
 	return startExec("figlet", t)
 }

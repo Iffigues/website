@@ -15,42 +15,19 @@ func (s *Server) GetCow(ctx context.Context, in *Cow)(*Responses, error) {
 	if in.Think {
 		com = "cowthink"
 	}
-	if in.L {
-		t = append(t, "-l")
-	}
-	if in.B {
-		t = append(t, "-b")
-	}
-	if in.D {
-		t = append(t, "-d")
-	}
-	if in.G {
-		t = append(t, "-g")
-	}
-	if in.P {
-		t = append(t, "-p")
-	}
-	if in.S {
-		t = append(t, "-s")
-	}
-	if in.T {
-		t = append(t, "-t")
-	}
-	if in.W {
-		t = append(t, "-w")
-	}
-	if in.E != "" {
-		t = addOptTab(t, "-e", in.E)
-	}
-	if in.Y {
-		t = append(t, "-y")
-	}
-	if in.TT != "" {
-		t = addOptTab(t, "-T", in.TT)
-	}
-	if in.F != "" {
-		t = addOptTab(t, "-f", in.F);
-	}
+
+	t = addBoolOptTable(t, in.L, "-l")
+	t = addBoolOptTable(t, in.B, "-b")
+	t = addBoolOptTable(t, in.D, "-d")
+	t = addBoolOptTable(t, in.G, "-g")
+	t = addBoolOptTable(t, in.P, "-p")
+	t = addBoolOptTable(t, in.S, "-s")
+	t = addBoolOptTable(t, in.T, "-t")
+	t = addBoolOptTable(t, in.W, "-w")
+	t = addStringOptTable(t, in.E, "-e", in.E)
+	t = addBoolOptTable(t, in.Y, "-y")
+	t = addStringOptTable(t, in.TT, "-T", in.TT)
+	t = addStringOptTable(t, in.F, "-f", in.F)
 	t = append(t, in.Message);
 	return startExec(com, t)
 }

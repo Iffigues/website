@@ -68,13 +68,13 @@ function Xkcdpass() {
 
 	return (
 		<>
-			<div>		
-				<div id="coco" style={{"textAlign": "initial",
+			<div>
+
+				<pre  id="coco" style={{"textAlign": "initial",
   						 "display": "inline-flex",
  						 "alignItems": "center",
   						 "justifyContent": "center",
-						}
-						}>{xkcdpass}</div>
+					}}>{xkcdpass}</pre>	
 			</div>
 			{Mes()}
 			<button onClick={addButton}>Add</button>

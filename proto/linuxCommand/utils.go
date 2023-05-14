@@ -5,7 +5,26 @@ import (
 	"time"
 )
 
-func addOptTab(r []string, e ...string) (b []string) {
+func addBoolOptTable(r []string, a bool, t string) (b []string) {
+	if !a {
+		return r
+	}
+	r = append(r, t)
+	return r
+}
+
+func addStringOptTable(r []string, a string, e ...string) (b []string) {
+	if a == "" {
+		return r
+	}
+
+	for _, val := range e {
+		r = append(r, val);
+	}
+	return r
+}
+
+func addOptTable(r []string, e ...string) (b []string) {
 	for _, val := range e {
 		r = append(r, val);
 	}

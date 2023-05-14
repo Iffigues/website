@@ -21,6 +21,7 @@ func main() {
 	chat.RegisterFigletServiceServer(grpcServer, &serve)
 	chat.RegisterToiletServiceServer(grpcServer, &serve)
 	chat.RegisterXkcdpassServiceServer(grpcServer, &serve)
+	chat.RegisterBannerServiceServer(grpcServer, &serve)
 	if err := grpcServer.Serve(listen); err != nil {
 		log.Fatalf("failed to serve: %s", err)
 	}
