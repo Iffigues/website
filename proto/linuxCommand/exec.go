@@ -27,6 +27,7 @@ func (c *Command) Command(ctx context.Context) (cmd *exec.Cmd) {
 
 func (c *Command)Exec(ctx context.Context) (out, er bytes.Buffer, err error) {
 	cmd := c.Command(ctx)
+	c.logs()
 	err = cmd.Start()
 	if err != nil {
 		return c.out, c.err, err
